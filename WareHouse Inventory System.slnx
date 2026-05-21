@@ -2,5 +2,6 @@
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
     <File Path="readme.md" />
+    <Project Path="Stock Service/Stock Service.csproj" />
   </Folder>
 </Solution>
