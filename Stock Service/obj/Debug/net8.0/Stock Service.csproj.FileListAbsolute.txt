@@ -499,3 +499,4 @@ C:\Users\2492282\source\repos\WareHouse Inventory Optimization System\Stock Serv
 C:\Users\2492282\source\repos\WareHouse Inventory Optimization System\Stock Service\obj\Debug\net8.0\Stock Se.675A5748.Up2Date
 C:\Users\2492282\source\repos\WareHouse Inventory Optimization System\Stock Service\obj\Debug\net8.0\Stock Service.genruntimeconfig.cache
 C:\Users\2492282\source\repos\WareHouse Inventory Optimization System\Stock Service\obj\Debug\net8.0\ref\Stock Service.dll
+C:\Users\2492282\source\repos\WareHouse Inventory System\Stock Service\obj\Debug\net8.0\Stock Service.sourcelink.json
