@@ -1,0 +1,10 @@
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.csproj.AssemblyReference.cache
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.AssemblyInfoInputs.cache
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.AssemblyInfo.cs
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.csproj.CoreCompileInputs.cache
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.RazorAssemblyInfo.cache
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.RazorAssemblyInfo.cs
+C:\Users\2492282\source\repos\WareHouse Inventory System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.sourcelink.json
