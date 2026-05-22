@@ -1,0 +1,6 @@
+@Vendor_Management_HostAddress = http://localhost:5233
+
+GET {{Vendor_Management_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
