@@ -10,9 +10,9 @@ namespace WareHouse_Optimization_System.Controllers
     [ApiController]
     public class ZonesController : ControllerBase
     {
-    private readonly IZoneService _service  ;   
+    private readonly ZoneService _service  ;   
 
-    public ZonesController(IZoneService service)
+    public ZonesController(ZoneService service)
     {
         _service = service;
     }

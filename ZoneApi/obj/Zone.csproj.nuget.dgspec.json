@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\ZoneApi\\Zone.csproj": {}
+    "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\ZoneApi\\Zone.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\ZoneApi\\Zone.csproj": {
+    "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\ZoneApi\\Zone.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\ZoneApi\\Zone.csproj",
+        "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\ZoneApi\\Zone.csproj",
         "projectName": "Zone",
-        "projectPath": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\ZoneApi\\Zone.csproj",
+        "projectPath": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\ZoneApi\\Zone.csproj",
         "packagesPath": "C:\\Users\\2492282\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\ZoneApi\\obj\\",
+        "outputPath": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\ZoneApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -31,7 +31,6 @@
         },
         "frameworks": {
           "net10.0": {
-            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -50,7 +49,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {

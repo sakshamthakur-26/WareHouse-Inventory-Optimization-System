@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Transaction;
 using WareHouse_Optimization_System.Models;
 
@@ -6,9 +7,9 @@ namespace WareHouse_Optimization_System.Services
 {
     public class TransactionService
     {
-        private readonly TransactionContext _context;
+        private readonly WarehouseDbContext _context;
 
-        public TransactionService(TransactionContext context)
+        public TransactionService(WarehouseDbContext context)
         {
             _context = context;
         }

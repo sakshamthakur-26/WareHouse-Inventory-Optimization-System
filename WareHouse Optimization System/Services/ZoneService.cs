@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Zone;
 using WareHouse_Optimization_System.Models;
 using ZoneEntity = WareHouse_Optimization_System.Models.Zone;
 namespace WareHouse_Optimization_System.Services;
 
 
-public class ZoneService : IZoneService
+public class ZoneService 
 {
-    private readonly ZoneContext _context;
-    public ZoneService(ZoneContext context) {
+    private readonly WarehouseDbContext _context;
+    public ZoneService(WarehouseDbContext context) {
         _context = context;
     }
 

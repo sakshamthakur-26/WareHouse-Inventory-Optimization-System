@@ -10,6 +10,7 @@ namespace WareHouse_Optimization_System.Db
         }
         public DbSet<StockItem> StockItems { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Zone> Zones { get; set; }
 
     }
 }

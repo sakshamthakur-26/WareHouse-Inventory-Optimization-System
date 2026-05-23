@@ -1,7 +1,8 @@
-﻿using Azure.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+
 using WareHouse_Optimization_System.Controllers;
+using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Stock;
 using WareHouse_Optimization_System.Models;
 
@@ -10,10 +11,10 @@ namespace WareHouse_Optimization_System.Services
     public class StockService
     {
 
-        private readonly StockDbContext _context;
+        private readonly WarehouseDbContext? _context;
 
-        DemoService _dservice = null;
-        public StockService(StockDbContext _dbContext)
+        private readonly DemoService? _dservice = null;
+        public StockService(WarehouseDbContext _dbContext)
         {
             _context = _dbContext;
             _dservice = new DemoService();

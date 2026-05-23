@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.DTOs.Stock;
 using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.Services;
-
+using System;
 namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
@@ -21,43 +20,6 @@ namespace WareHouse_Optimization_System.Controllers
         {
             _services = services;
         }
-
-
-      
-
-        // PUT: api/StockItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutStockItem(int id, StockItem stockItem)
-        //{
-        //    if (id != stockItem.ItemId)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(stockItem).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!StockItemExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-
-
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StockItem>>> GetStockItems()

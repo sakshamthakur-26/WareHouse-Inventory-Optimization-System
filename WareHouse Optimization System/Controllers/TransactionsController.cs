@@ -15,9 +15,9 @@ namespace WareHouse_Optimization_System.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
-        private readonly ITransactionService _service;
+        private readonly TransactionService _service;
 
-        public TransactionsController(ITransactionService service)
+        public TransactionsController(TransactionService service)
         {
             _service = service; 
         }
