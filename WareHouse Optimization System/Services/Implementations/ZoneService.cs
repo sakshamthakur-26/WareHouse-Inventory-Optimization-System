@@ -3,7 +3,7 @@ using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Zone;
 using WareHouse_Optimization_System.Models;
 using ZoneEntity = WareHouse_Optimization_System.Models.Zone;
-namespace WareHouse_Optimization_System.Services;
+namespace WareHouse_Optimization_System.Services.Implementations;
 
 using WareHouse_Optimization_System.Models;
 

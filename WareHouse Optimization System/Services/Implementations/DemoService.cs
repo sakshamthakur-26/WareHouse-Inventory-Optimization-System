@@ -1,4 +1,4 @@
-﻿namespace WareHouse_Optimization_System.Services;
+﻿namespace WareHouse_Optimization_System.Services.Implementations;
 
 public class DemoService
 {

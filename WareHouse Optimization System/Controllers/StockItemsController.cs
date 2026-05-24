@@ -8,6 +8,7 @@ using WareHouse_Optimization_System.DTOs.Stock;
 using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.Services;
 using System;
+using WareHouse_Optimization_System.Services.Implementations;
 namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
@@ -21,47 +22,56 @@ namespace WareHouse_Optimization_System.Controllers
             _services = services;
         }
 
+
+        // Get Stock Items
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StockItem>>> GetStockItems()
         {
             return await _services.GetAllStockItems();
         }
 
+
+        //Get Stock Item By Id
+
         [HttpGet("{id}")]
         public async Task<ActionResult<StockItem>> GetStockItem(int id)
         {
-            StockItem? stockItem = await _services.GetStockItemById(id);
-            if (stockItem == null)
-            {
-                return NotFound();
-            }
-            return stockItem;
+            StockItem? stockItem = await _services.GetStockItemByIdAsync(id);
+            if (stockItem == null) return NotFound();
+            return Ok(stockItem);
         }
+
+
+
+        // Create Stock Items
 
         [HttpPost]
         public async Task<ActionResult<StockItem>> PostStockItem(AddStockDto stockdto)
         {
-            StockItem? stockItem = await _services.AddStockItem(stockdto);
+            ServiceResult<StockItem> result = await _services.AddStockItemAsync(stockdto);
+            if (!result.IsSuccess)
+            {
             
+                return BadRequest(result.ErrorMessage);
+            }
 
 
-            return CreatedAtAction("GetStockItem", new { id = stockItem.ItemId }, stockItem);
+
+            return CreatedAtAction(nameof(GetStockItem), new { id = result.Data.ItemId }, result.Data);
         }
 
+
         // DELETE: api/StockItems/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStockItem(int id,[FromBody]int quantity)
+        [HttpPost("{id}/remove")]
+        public async Task<IActionResult> RemoveStockItem(int id,[FromBody]int quantity)
         {
 
-            try
-            {
-                var stockItem = await _services.RemoveStock(id, quantity);
-                if (!stockItem) throw new Exception("not deleted");
-                return Ok("deleted");
-            }catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+           
+                ServiceResult<bool> result = await _services.RemoveStockAsync(id, quantity);
+                if (!result.IsSuccess) return BadRequest(result.ErrorMessage);
+                return Ok("Stock Successfully removed");
+           
             
 
 

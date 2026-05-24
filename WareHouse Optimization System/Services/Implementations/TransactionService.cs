@@ -3,7 +3,7 @@ using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Transaction;
 using WareHouse_Optimization_System.Models;
 
-namespace WareHouse_Optimization_System.Services
+namespace WareHouse_Optimization_System.Services.Implementations
 {
     public class TransactionService
     {

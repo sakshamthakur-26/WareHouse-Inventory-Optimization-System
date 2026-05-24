@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.Db;
-using WareHouse_Optimization_System.Services;
+using WareHouse_Optimization_System.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
