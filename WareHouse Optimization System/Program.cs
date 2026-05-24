@@ -5,12 +5,14 @@ using WareHouse_Optimization_System.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddScoped<ZoneService>();
-//builder.Services.AddScoped<StockService>();
-//builder.Services.AddScoped<TransactionService>();
+builder.Services.AddScoped<ZoneService>();
+builder.Services.AddScoped<StockService>();
+builder.Services.AddScoped<TransactionService>();
 builder.Services.AddControllersWithViews();
+var connectionString = builder.Configuration.GetConnectionString("WarehouseDB")
+    ?? throw new InvalidOperationException("Connection string 'WarehouseDB' not found in configuration files.");
 builder.Services.AddDbContext<WarehouseDbContext>(options =>
-           options.UseSqlServer(builder.Configuration.GetConnectionString("WarehouseDB")));
+    options.UseSqlServer(connectionString));
 
 
 var app = builder.Build();
@@ -28,6 +30,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "api/{controller=StockItem}/{action=GetStockItems}");
 
 app.Run();

@@ -4,6 +4,7 @@ using Microsoft.Identity.Client;
 using WareHouse_Optimization_System.Controllers;
 using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Stock;
+using WareHouse_Optimization_System.DTOs.Transaction;
 using WareHouse_Optimization_System.Models;
 
 namespace WareHouse_Optimization_System.Services
@@ -14,10 +15,14 @@ namespace WareHouse_Optimization_System.Services
         private readonly WarehouseDbContext? _context;
 
         private readonly DemoService? _dservice = null;
+        private readonly ZoneService? _zoneService = null;
+        private readonly TransactionService? _transactionService = null;
         public StockService(WarehouseDbContext _dbContext)
         {
             _context = _dbContext;
             _dservice = new DemoService();
+            _zoneService = new ZoneService(_context);
+            _transactionService = new TransactionService(_context);
         }
 
 
@@ -48,8 +53,9 @@ namespace WareHouse_Optimization_System.Services
 
                 //return zone id and zone name
                 var zoneAllocation = await _dservice.CheckZoneCapacity(addStockDto.CategoryName, addStockDto.Quantity);
+                var zoneCapacity = await _zoneService.CheckAvailableCapacityAsync(zoneAllocation, addStockDto.Quantity);
 
-                if (zoneAllocation == null)
+                if (!zoneCapacity)
                 {
                     throw new Exception("Zone capacity exceeded for category '{addStockDto.CategoryName}'.");
                 }
@@ -57,7 +63,7 @@ namespace WareHouse_Optimization_System.Services
                 var stockItem = new StockItem
                 {
                     Name = addStockDto.ItemName,
-                    ProductId = 1,
+                  
                     CategoryId = categoryId,
                     Quantity = addStockDto.Quantity,
                     ZoneId = zoneAllocation,
@@ -68,21 +74,36 @@ namespace WareHouse_Optimization_System.Services
                 _context.StockItems.Add(stockItem);
                 var res = await _context.SaveChangesAsync();
 
-                if (res > 0)
+
+
+                if (res <= 0)
                 {
-                    bool isTransactionCreated = await _dservice.CreateTransaction(stockItem.ItemId, stockItem.Name, stockItem.CategoryId, stockItem.Quantity, stockItem.ZoneId, "Inbound");
-                    if (!isTransactionCreated)
-                    {
-                        throw new InvalidOperationException("Failed to create transaction record");
-                    }
-                    return stockItem;
+
+                    throw new Exception("kuch nhi huya");
+                    
 
                 }
-                    return null;
+                await _zoneService.UpdateZoneUsageAsync(zoneAllocation, addStockDto.Quantity);
+                var TransactionRequest = new CreateTransactionRequest {
+                
+                    ItemId = stockItem.ItemId,
+                    Quantity = stockItem.Quantity,
+                    Type = "Inbound"
+                }; 
+
+                var TransactionResponse = await _transactionService.CreateTransactionAsync(TransactionRequest);
+                
+                if (!TransactionResponse.IsSuccess)
+                {
+                    throw new InvalidOperationException("Failed to create transaction record");
+                }
+                return stockItem;
+               
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine($"DEBUG ERROR: {ex.Message}");
+                throw;
                 
             }
 
@@ -116,14 +137,19 @@ namespace WareHouse_Optimization_System.Services
                     throw new Exception("Failed to save the updated quantity to the database.");
                 }
 
-                bool zoneCapacity = await _dservice.UpdateZoneCapacity(StockItem.ZoneId, Quantity);
-                if (!zoneCapacity)
-                {
-                    throw new Exception("Zone capacity not updated");
-                }
+                await _zoneService.UpdateZoneUsageAsync(StockItem.ZoneId, Quantity);
+              
+             
 
-                var transactionLogged = await _dservice.CreateTransaction(ItemId, StockItem.Name, StockItem.CategoryId, Quantity, StockItem.ZoneId,"Outbound");
-                if (!transactionLogged)
+                var transactionRequest = new CreateTransactionRequest { ItemId = StockItem.ItemId,
+                    Quantity = Quantity,
+                    Type = "Outbound"
+                };
+
+                 var TransactionLogResponse = await _transactionService.CreateTransactionAsync(transactionRequest);
+
+
+            if (!TransactionLogResponse.IsSuccess)
                 {
                     throw new Exception("Failed to create transaction record");
                 }

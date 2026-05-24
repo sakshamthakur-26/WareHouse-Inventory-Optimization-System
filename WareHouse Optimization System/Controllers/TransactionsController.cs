@@ -74,7 +74,7 @@ namespace WareHouse_Optimization_System.Controllers
 
                 return CreatedAtAction(
                     nameof(GetTransactionByIdAsync),
-                    new { id = createdTransaction.TransactionId },
+                    new { id = createdTransaction.Data.TransactionId },
                     createdTransaction
                 ); // 201 Created
             }

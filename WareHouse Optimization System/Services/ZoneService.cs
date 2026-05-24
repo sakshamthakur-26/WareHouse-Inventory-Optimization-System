@@ -5,6 +5,8 @@ using WareHouse_Optimization_System.Models;
 using ZoneEntity = WareHouse_Optimization_System.Models.Zone;
 namespace WareHouse_Optimization_System.Services;
 
+using WareHouse_Optimization_System.Models;
+
 
 public class ZoneService 
 {
@@ -28,7 +30,7 @@ public class ZoneService
         }
         else
         {
-            var zone = new ZoneApi.Model.Zone
+            var zone = new Zone
             {
                 Name = request.Name,
                 MaxCapacity = request.MaxCapacity

@@ -43,7 +43,7 @@ namespace WareHouse_Optimization_System.Services
             };
         }
 
-        public async Task<TransactionLogResponse> CreateTransactionAsync(CreateTransactionRequest request)
+        public async Task<ServiceResult<TransactionLogResponse>> CreateTransactionAsync(CreateTransactionRequest request)
         {
             var transaction = new Transaction
             {
@@ -53,10 +53,15 @@ namespace WareHouse_Optimization_System.Services
                 Timestamp = DateTime.Now
             };
 
-            _context.Transactions.Add(transaction);
-            await _context.SaveChangesAsync();
+           _context.Transactions.Add(transaction);
+            var res = await _context.SaveChangesAsync();
 
-            return new TransactionLogResponse
+            if(res <=0)
+            {
+                return ServiceResult<TransactionLogResponse>.Failure("Failed to create transaction");
+            }
+
+            var responseLog =  new TransactionLogResponse
             {
                 TransactionId = transaction.TransactionId,
                 ItemId = transaction.ItemId,
@@ -64,6 +69,7 @@ namespace WareHouse_Optimization_System.Services
                 Type = transaction.Type,
                 Timestamp = transaction.Timestamp
             };
+            return ServiceResult<TransactionLogResponse>.Success(responseLog);
         }
     }
 }

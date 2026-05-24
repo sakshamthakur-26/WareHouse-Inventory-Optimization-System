@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 namespace WareHouse_Optimization_System.Models
 {
 
-    [Index(nameof(Name), IsUnique = true)]
     public class StockItem
     {
         [Key]

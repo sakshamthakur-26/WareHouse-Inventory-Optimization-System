@@ -42,6 +42,7 @@ namespace WareHouse_Optimization_System.Controllers
         public async Task<ActionResult<StockItem>> PostStockItem(AddStockDto stockdto)
         {
             StockItem? stockItem = await _services.AddStockItem(stockdto);
+            
 
 
             return CreatedAtAction("GetStockItem", new { id = stockItem.ItemId }, stockItem);

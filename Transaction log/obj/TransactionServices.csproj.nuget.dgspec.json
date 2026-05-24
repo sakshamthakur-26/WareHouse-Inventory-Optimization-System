@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\Transaction log\\TransactionServices.csproj": {}
+    "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\Transaction log\\TransactionServices.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\Transaction log\\TransactionServices.csproj": {
+    "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\Transaction log\\TransactionServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\Transaction log\\TransactionServices.csproj",
+        "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\Transaction log\\TransactionServices.csproj",
         "projectName": "TransactionServices",
-        "projectPath": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\Transaction log\\TransactionServices.csproj",
+        "projectPath": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\Transaction log\\TransactionServices.csproj",
         "packagesPath": "C:\\Users\\2492282\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\Transaction log\\obj\\",
+        "outputPath": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\Transaction log\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
