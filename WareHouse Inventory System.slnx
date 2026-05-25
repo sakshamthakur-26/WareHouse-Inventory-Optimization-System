@@ -3,4 +3,5 @@
     <File Path=".gitignore" />
     <File Path="readme.md" />
   </Folder>
+  <Project Path="Vendor Management/Vendor Management.csproj" />
 </Solution>
