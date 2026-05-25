@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure.Core;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using WareHouse_Optimization_System.Controllers;
 using WareHouse_Optimization_System.Db;
@@ -17,12 +18,14 @@ namespace WareHouse_Optimization_System.Services.Implementations
         private readonly DemoService? _dservice = null;
         private readonly ZoneService? _zoneService = null;
         private readonly TransactionService? _transactionService = null;
-        public StockService(WarehouseDbContext _dbContext,ZoneService zoneService,TransactionService transactionService)
+        private readonly ICategoryService? _categoryService = null;
+        public StockService(WarehouseDbContext _dbContext,ZoneService zoneService,TransactionService transactionService,ICategoryService categoryService)
         {
             _context = _dbContext;
             _dservice = new DemoService();
             _zoneService = zoneService;
             _transactionService = transactionService;
+            _categoryService = categoryService;
         }
 
 
@@ -48,24 +51,23 @@ namespace WareHouse_Optimization_System.Services.Implementations
                     return ServiceResult<StockItem>.Failure("Enter a valid quantity greater than 0.");
                 }
 
-                int categoryId = await _dservice.GetCategoryId(addStockDto.CategoryName);
+                var categoryResponse = await _categoryService.GetZoneForCategoryAsync(addStockDto.CategoryName);
+                if(!categoryResponse.IsSuccess)
+            {
+                return ServiceResult<StockItem>.Failure("zone not found for required category");
+            }
+                
+                
                 //return zone id and zone name
-                var zoneAllocation = await _dservice.CheckZoneCapacity(addStockDto.CategoryName, addStockDto.Quantity);
-                var zoneCapacity = await _zoneService.CheckAvailableCapacityAsync(zoneAllocation, addStockDto.Quantity);
+               
+                var zoneCapacity = await _zoneService.CheckAvailableCapacityAsync(categoryResponse.Data.DedicatedZoneId, addStockDto.Quantity);
 
                 if (!zoneCapacity)
                 {
                     return ServiceResult<StockItem>.Failure($"Zone capacity exceeded for category '{addStockDto.CategoryName}'.");
                 }
 
-                var stockItem = new StockItem
-                {
-                    Name = addStockDto.ItemName,
-                  
-                    CategoryId = categoryId,
-                    Quantity = addStockDto.Quantity,
-                    ZoneId = zoneAllocation,
-                };
+               
                 //check via zone capacity is there or not
 
 
@@ -73,14 +75,37 @@ namespace WareHouse_Optimization_System.Services.Implementations
 
                 try
                 {
-                    _context.StockItems.Add(stockItem);
+                    
+                var existingStock = await _context.StockItems.FirstOrDefaultAsync(s => s.Name.ToLower() == addStockDto.ItemName && s.CategoryId == categoryResponse.Data.CategoryId && s.ZoneId == categoryResponse.Data.DedicatedZoneId);
+                StockItem stockToProcess;
+
+                if (existingStock != null)
+                {
+                    
+                    existingStock.Quantity += addStockDto.Quantity;
+                    _context.StockItems.Update(existingStock);
+                    stockToProcess = existingStock;
+                }else
+                {
+                    stockToProcess = new StockItem
+                    {
+                        Name = addStockDto.ItemName,
+
+                        CategoryId = categoryResponse.Data.CategoryId,
+                        Quantity = addStockDto.Quantity,
+                        ZoneId = categoryResponse.Data.DedicatedZoneId,
+                        MinimumThreshold = null
+                    };
+                }
+
+                _context.StockItems.Add(stockToProcess);
                     await _context.SaveChangesAsync();
-                     await _zoneService.UpdateZoneUsageAsync(zoneAllocation, addStockDto.Quantity);
+                     await _zoneService.UpdateZoneUsageAsync(categoryResponse.Data.DedicatedZoneId, addStockDto.Quantity);
                     var TransactionRequest = new CreateTransactionRequest
                     {
 
-                        ItemId = stockItem.ItemId,
-                        Quantity = stockItem.Quantity,
+                        ItemId = stockToProcess.ItemId,
+                        Quantity = stockToProcess.Quantity,
                         Type = "Inbound"
                     };
                     var TransactionResponse = await _transactionService.CreateTransactionAsync(TransactionRequest);
@@ -90,7 +115,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                     }
                     await transaction.CommitAsync();
 
-                    return ServiceResult<StockItem>.Success(stockItem);
+                    return ServiceResult<StockItem>.Success(stockToProcess);
 
                 }
                 catch
@@ -127,7 +152,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
             try
             {
                 await _context.SaveChangesAsync();
-                await _zoneService.UpdateZoneUsageAsync(StockItem.ZoneId, Quantity);
+                await _zoneService.UpdateZoneUsageAsync(StockItem.ZoneId, -Quantity);
                 var transactionRequest = new CreateTransactionRequest
                 {
                     ItemId = StockItem.ItemId,
@@ -140,7 +165,11 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 {
                    return ServiceResult<bool>.Failure("Failed to create transaction record");
                 }
-
+                if (StockItem.MinimumThreshold.HasValue && StockItem.Quantity <= StockItem.MinimumThreshold.Value)
+                {
+                    // You can call your AlertService here
+                    // await _alertService.TriggerLowStockAlertAsync(stockItem.ItemId);
+                }
                 await transaction.CommitAsync();
                 return ServiceResult<bool>.Success(true);
 
