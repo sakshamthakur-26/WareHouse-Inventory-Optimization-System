@@ -73,9 +73,15 @@ namespace WareHouse_Optimization_System.Controllers
                 return Ok("Stock Successfully removed");
            
             
-
-
            
+        }
+
+        public async Task<bool> LowStockAlertAsync(int id)
+        {
+            StockItem? stockItem = await _services.GetStockItemByIdAsync(id);
+            if (stockItem == null) return false;
+            // Assuming a low stock threshold of 10 for demonstration purposes
+            return stockItem.Quantity < 10;
         }
         
       
