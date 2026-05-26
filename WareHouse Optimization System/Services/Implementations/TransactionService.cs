@@ -5,7 +5,7 @@ using WareHouse_Optimization_System.Models;
 
 namespace WareHouse_Optimization_System.Services.Implementations
 {
-    public class TransactionService
+    public class TransactionService : ITransactionService
     {
         private readonly WarehouseDbContext _context;
 
@@ -53,15 +53,15 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 Timestamp = DateTime.Now
             };
 
-           _context.Transactions.Add(transaction);
+            _context.Transactions.Add(transaction);
             var res = await _context.SaveChangesAsync();
 
-            if(res <=0)
+            if (res <= 0)
             {
                 return ServiceResult<TransactionLogResponse>.Failure("Failed to create transaction");
             }
 
-            var responseLog =  new TransactionLogResponse
+            var responseLog = new TransactionLogResponse
             {
                 TransactionId = transaction.TransactionId,
                 ItemId = transaction.ItemId,
