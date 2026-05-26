@@ -45,7 +45,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
         {
           
 
-                //write find categordId via category name and zoneId via zone name
+               
                 if (addStockDto.Quantity <= 0)
                 {
                     return ServiceResult<StockItem>.Failure("Enter a valid quantity greater than 0.");
@@ -58,7 +58,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
             }
                 
                 
-                //return zone id and zone name
+               
                
                 var zoneCapacity = await _zoneService.CheckAvailableCapacityAsync(categoryResponse.Data.DedicatedZoneId, addStockDto.Quantity);
 
@@ -68,7 +68,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 }
 
                
-                //check via zone capacity is there or not
+              
 
 
                  using var transaction = await _context.Database.BeginTransactionAsync();

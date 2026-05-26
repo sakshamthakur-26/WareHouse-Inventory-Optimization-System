@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.Db;
-using WareHouse_Optimization_System.DTOs;
+using WareHouse_Optimization_System.DTOs.Category;
 using WareHouse_Optimization_System.Models;
+using WareHouse_Optimization_System.Services.Interfaces;
 
 namespace WareHouse_Optimization_System.Services.Implementations
 {
-    public class CategoryService
+    public class CategoryService:ICategoryService
     {
         public readonly WarehouseDbContext _context;
         public CategoryService(WarehouseDbContext context)
@@ -13,7 +14,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
             _context = context;
         }
 
-        public async Task<ServiceResult<int>> GetZoneForCategoryAsync(string categoryName)
+        public async Task<ServiceResult<CategoryResponseDto>> GetZoneForCategoryAsync(string categoryName)
         {
            
             var category = await _context.Categories
@@ -23,9 +24,14 @@ namespace WareHouse_Optimization_System.Services.Implementations
             {
                 throw new Exception($"Category {categoryName} does not exist.");
             }
+            CategoryResponseDto responseDto = new CategoryResponseDto() 
+            {
+                CategoryId = category.CategoryId,
+                DedicatedZoneId = category.DedicatedZoneId
+            };
 
 
-            return  ServiceResult<int>.Success(category.DedicatedZoneId) ;
+            return  ServiceResult<CategoryResponseDto>.Success(responseDto) ;
         }
 
         public async Task<ServiceResult<Category>> CreateCategoryAsync(CreateCategoryDto request)
