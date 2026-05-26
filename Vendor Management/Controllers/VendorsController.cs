@@ -6,7 +6,7 @@
     using VendorManagement.Services;
 
     [ApiController]
-    [Route("api/v1/[controller]")] // Rule 3: Plural naming and v1 prefix
+    [Route("api/v1/[controller]")] 
     public class VendorsController : ControllerBase
     {
         private readonly VendorService _service;

@@ -11,7 +11,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<VendorDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("VendorDb")));
 
-builder.Services.AddScoped<IVendorRepository, VendorRepository>();
+
+
+builder.Services.AddControllers();
 builder.Services.AddScoped<VendorService>();
 
 var app = builder.Build();

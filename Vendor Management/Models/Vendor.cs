@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace VendorManagement.Models
 {
-    // Basic Vendor Model as per your requirement
+
     public class Vendor
     {
         public int VendorId { get; set; }

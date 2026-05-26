@@ -1,35 +1,53 @@
-﻿using VendorManagement.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using VendorManagement.Models;
 using VendorManagement.DTOs;
+
 namespace VendorManagement.Services
 {
-    
-
     public class VendorService
     {
-        private readonly IVendorRepository _repo;
-        public VendorService(IVendorRepository repo) { _repo = repo; }
+        private readonly VendorDbContext _context;
 
-        public async Task<IEnumerable<Vendor>> GetVendors() => await _repo.GetAllAsync();
+        public VendorService(VendorDbContext context)
+        {
+            _context = context;
+        }
 
-        public async Task<Vendor> GetVendor(int id) => await _repo.GetByIdAsync(id);
+        // 1. Get All Vendors
+        public async Task<IEnumerable<Vendor>> GetVendors()
+        {
+            return await _context.Vendors.ToListAsync();
+        }
 
+        // 2. Get Vendor By ID
+        public async Task<Vendor?> GetVendor(int id)
+        {
+            return await _context.Vendors.FindAsync(id);
+        }
+
+        // 3. Create Vendor
         public async Task<Vendor> CreateVendor(Vendor vendor)
         {
-            await _repo.AddAsync(vendor);
+            await _context.Vendors.AddAsync(vendor);
+            await _context.SaveChangesAsync();
             return vendor;
         }
 
+        // 4. Update Vendor
         public async Task UpdateVendor(Vendor vendor)
         {
-            await _repo.UpdateAsync(vendor);
+            _context.Entry(vendor).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
+        // 5. Remove Vendor 
         public async Task<bool> RemoveVendor(int id)
         {
-            var exists = await _repo.GetByIdAsync(id);
-            if (exists == null) return false;
+            var vendor = await _context.Vendors.FindAsync(id);
+            if (vendor == null) return false;
 
-            await _repo.DeleteAsync(id);
+            _context.Vendors.Remove(vendor);
+            await _context.SaveChangesAsync();
             return true;
         }
     }
