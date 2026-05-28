@@ -12,8 +12,8 @@ using WareHouse_Optimization_System.Db;
 namespace WareHouse_Optimization_System.Migrations
 {
     [DbContext(typeof(WarehouseDbContext))]
-    [Migration("20260523181529_four")]
-    partial class four
+    [Migration("20260528062656_second")]
+    partial class second
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,56 @@ namespace WareHouse_Optimization_System.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("VendorManagement.Models.Vendor", b =>
+                {
+                    b.Property<int>("VendorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendorId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GoodsSupplied")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double>("PhoneNumber")
+                        .HasColumnType("float");
+
+                    b.HasKey("VendorId");
+
+                    b.ToTable("Vendors");
+                });
+
+            modelBuilder.Entity("WareHouse_Optimization_System.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<int>("DedicatedZoneId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("WareHouse_Optimization_System.Models.StockItem", b =>
                 {
                     b.Property<int>("ItemId")
@@ -34,6 +84,9 @@ namespace WareHouse_Optimization_System.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
                     b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinimumThreshold")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -48,9 +101,6 @@ namespace WareHouse_Optimization_System.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ItemId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("StockItems");
                 });

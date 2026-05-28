@@ -47,6 +47,32 @@
   },
   {
     "ContainingType": "WareHouse_Optimization_System.Controllers.StockItemsController",
+    "Method": "LowStockAlertAsync",
+    "RelativePath": "api/StockItems",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.StockItemsController",
     "Method": "GetStockItem",
     "RelativePath": "api/StockItems/{id}",
     "HttpMethod": "GET",
@@ -73,9 +99,9 @@
   },
   {
     "ContainingType": "WareHouse_Optimization_System.Controllers.StockItemsController",
-    "Method": "DeleteStockItem",
-    "RelativePath": "api/StockItems/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "RemoveStockItem",
+    "RelativePath": "api/StockItems/{id}/remove",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -163,6 +189,85 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "VendorManagement.Controllers.VendorsController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Vendors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VendorManagement.Controllers.VendorsController",
+    "Method": "Create",
+    "RelativePath": "api/v1/Vendors",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "VendorManagement.DTOs.VendorRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VendorManagement.Controllers.VendorsController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/Vendors/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VendorManagement.Controllers.VendorsController",
+    "Method": "Update",
+    "RelativePath": "api/v1/Vendors/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "req",
+        "Type": "VendorManagement.DTOs.VendorRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VendorManagement.Controllers.VendorsController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/Vendors/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",

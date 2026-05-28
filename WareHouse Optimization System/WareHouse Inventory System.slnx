@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="readme.md" />
+    <Project Path="Stock Service/Stock Service.csproj" />
+  </Folder>
+ HEAD
+  <Project Path="Vendor Management/Vendor Management.csproj" />
+=======
+  <Project Path="Transaction log/TransactionServices.csproj" />
+  <Project Path="WareHouse Optimization System/WareHouse Optimization System.csproj" Id="a504881b-a1a9-4405-8d8c-a5679ddaeb97" />
+  <Project Path="ZoneApi/Zone.csproj" />
+>>>>>>> 509d385dbfe60882ae2a2b711a050fff36b652b1
+</Solution>

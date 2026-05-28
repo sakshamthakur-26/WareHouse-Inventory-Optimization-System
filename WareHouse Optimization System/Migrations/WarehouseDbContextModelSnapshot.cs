@@ -22,6 +22,35 @@ namespace WareHouse_Optimization_System.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("VendorManagement.Models.Vendor", b =>
+                {
+                    b.Property<int>("VendorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendorId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GoodsSupplied")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double>("PhoneNumber")
+                        .HasColumnType("float");
+
+                    b.HasKey("VendorId");
+
+                    b.ToTable("Vendors");
+                });
+
             modelBuilder.Entity("WareHouse_Optimization_System.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")

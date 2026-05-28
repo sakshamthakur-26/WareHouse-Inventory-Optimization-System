@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\WareHouse Optimization System\\WareHouse Optimization System.csproj": {}
+    "C:\\Users\\2492268\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\WareHouse Optimization System\\WareHouse Optimization System.csproj": {
+    "C:\\Users\\2492268\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
+        "projectUniqueName": "C:\\Users\\2492268\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
         "projectName": "WareHouse Optimization System",
-        "projectPath": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
-        "packagesPath": "C:\\Users\\2492282\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2492282\\source\\repos\\Warehouse Inventory System\\WareHouse Optimization System\\obj\\",
+        "projectPath": "C:\\Users\\2492268\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
+        "packagesPath": "C:\\Users\\2492268\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\2492268\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\2492282\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\2492268\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,6 +27,8 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Real": {},
+          "C:\\RealEstateLibraray": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -91,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
