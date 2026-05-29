@@ -29,9 +29,10 @@ namespace WareHouse_Optimization_System.Services.Implementations
         }
 
 
-        public async Task<List<StockItem>> GetAllStockItems()
+        public async Task<ServiceResult<List<StockItem>>> GetAllStockItems()
         {
-            return await _context.StockItems.ToListAsync();
+            var stocks =  await _context.StockItems.ToListAsync();
+            return ServiceResult<List<StockItem>>.Success(stocks);
         }
 
         public async Task<StockItem> GetStockItemByIdAsync(int id)
@@ -53,9 +54,9 @@ namespace WareHouse_Optimization_System.Services.Implementations
 
                 var categoryResponse = await _categoryService.GetZoneForCategoryAsync(addStockDto.CategoryName);
                 if(!categoryResponse.IsSuccess)
-            {
-                return ServiceResult<StockItem>.Failure("zone not found for required category");
-            }
+                {
+                    return ServiceResult<StockItem>.Failure("zone not found for required category");
+                }
                 
                 
                
@@ -98,7 +99,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                     };
                 }
 
-                _context.StockItems.Add(stockToProcess);
+                _context.StockItems.Update(stockToProcess);
                     await _context.SaveChangesAsync();
                      await _zoneService.UpdateZoneUsageAsync(categoryResponse.Data.DedicatedZoneId, addStockDto.Quantity);
                     var TransactionRequest = new CreateTransactionRequest
@@ -187,6 +188,6 @@ namespace WareHouse_Optimization_System.Services.Implementations
             
         }
 
-
+        
     }
 }
