@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WareHouse Optimization System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7daf2329bc7153f0d6366fa48d2b4b573f53ccd7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+509d385dbfe60882ae2a2b711a050fff36b652b1")]
 [assembly: System.Reflection.AssemblyProductAttribute("WareHouse Optimization System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WareHouse Optimization System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -8,3 +8,13 @@ C:\Users\2492282\source\repos\WareHouse Inventory System\ZoneApi\obj\Debug\net10
 C:\Users\2492282\source\repos\WareHouse Inventory System\ZoneApi\obj\Debug\net10.0\Zone.RazorAssemblyInfo.cache
 C:\Users\2492282\source\repos\WareHouse Inventory System\ZoneApi\obj\Debug\net10.0\Zone.RazorAssemblyInfo.cs
 C:\Users\2492282\source\repos\WareHouse Inventory System\ZoneApi\obj\Debug\net10.0\Zone.sourcelink.json
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.csproj.AssemblyReference.cache
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.AssemblyInfoInputs.cache
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.AssemblyInfo.cs
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.csproj.CoreCompileInputs.cache
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.RazorAssemblyInfo.cache
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.RazorAssemblyInfo.cs
+C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\ZoneApi\obj\Debug\net10.0\Zone.sourcelink.json
