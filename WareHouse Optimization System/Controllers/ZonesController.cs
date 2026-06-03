@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.DTOs.Zone;
-using WareHouse_Optimization_System.Models;
-using WareHouse_Optimization_System.Services;
-using WareHouse_Optimization_System.Services.Implementations;
+using WareHouse_Optimization_System.Services.Interfaces;
 
 namespace WareHouse_Optimization_System.Controllers
 {
@@ -12,9 +9,9 @@ namespace WareHouse_Optimization_System.Controllers
     [ApiController]
     public class ZonesController : ControllerBase
     {
-    private readonly ZoneService _service  ;   
+    private readonly IZoneService _service;
 
-    public ZonesController(ZoneService service)
+    public ZonesController(IZoneService service)
     {
         _service = service;
     }
@@ -23,46 +20,66 @@ namespace WareHouse_Optimization_System.Controllers
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var result = await _service.GetAllAsync();
-        if (result.IsSuccess) return Ok(result);
-        return BadRequest(result);
+        var zones = await _service.GetAllAsync();
+        return Ok(zones);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var result = await _service.GetByIdAsync(id);
-        if (!result.IsSuccess) return NotFound(result);
-        return Ok(result);
+        try
+        {
+            var zone = await _service.GetByIdAsync(id);
+            return Ok(zone);
+        }
+        catch (InvalidOperationException)
+        {
+            return NotFound();
+        }
     }
 
     [HttpPost]
     //[Route("/Create")]
     public async Task<IActionResult> Create(CreateZoneRequest request)
     {
-        var result = await _service.CreateAsync(request);
-        if (!result.IsSuccess) return BadRequest(result);
-        return CreatedAtAction(nameof(GetById), new { id = result.Data.ZoneId }, result);
+        try
+        {
+            var created = await _service.CreateAsync(request);
+            return CreatedAtAction(nameof(GetById), new { id = created.ZoneId }, created);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Conflict(ex.Message);
+        }
     }
 
 
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, UpdateZoneRequest request)
-        {
-            var result = await _service.UpdateAsync(id, request);
+     [HttpPatch("{id}")]
+    public async Task<IActionResult> Patch(int id, UpdateZoneRequest request)
+    {
+        var result = await _service.UpdateAsync(id, request);
+        if (!result.IsSuccess)
+            return BadRequest(result.ErrorMessage);
 
-            if (!result.IsSuccess)
-                return BadRequest(result);
-
-            return Ok(result);
-        }
+        return Ok();
+    }
 
         [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await _service.DeleteAsync(id);
-        if (!result.IsSuccess) return NotFound(result);
-        return Ok(result);
+        try
+        {
+            await _service.DeleteAsync(id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
     }
 
 

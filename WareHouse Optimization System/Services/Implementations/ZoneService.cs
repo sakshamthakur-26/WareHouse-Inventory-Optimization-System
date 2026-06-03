@@ -4,7 +4,6 @@ using WareHouse_Optimization_System.DTOs.Zone;
 using WareHouse_Optimization_System.Models;
 using ZoneEntity = WareHouse_Optimization_System.Models.Zone;
 namespace WareHouse_Optimization_System.Services.Implementations;
-
 using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.Services.Interfaces;
 
@@ -96,8 +95,22 @@ public class ZoneService : IZoneService
         var found = await _context.Zones.FindAsync(id);
         if (found == null) return ServiceResult<object>.Failure("This data Is Not Present");
 
-        found.Name = request.Name;
-        found.MaxCapacity = request.MaxCapacity;
+        // Only update fields that are provided in the request
+        if (!string.IsNullOrEmpty(request.Name))
+        {
+            found.Name = request.Name;
+        }
+
+        if (request.MaxCapacity.HasValue)
+        {
+            // Ensure we don't set MaxCapacity below current usage
+            if (request.MaxCapacity.Value < found.CurrentUsage)
+            {
+                return ServiceResult<object>.Failure("New max capacity cannot be less than current usage");
+            }
+
+            found.MaxCapacity = request.MaxCapacity.Value;
+        }
 
         await _context.SaveChangesAsync();
 

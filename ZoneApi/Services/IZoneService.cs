@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Zone.DTOs;
-using Zone.Services;
+using WareHouse_Optimization_System.Services;
 namespace Zone.Services
 {
     public interface IZoneService
