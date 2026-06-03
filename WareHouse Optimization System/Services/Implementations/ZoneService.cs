@@ -6,7 +6,7 @@ using ZoneEntity = WareHouse_Optimization_System.Models.Zone;
 namespace WareHouse_Optimization_System.Services.Implementations;
 
 using WareHouse_Optimization_System.Models;
-
+using WareHouse_Optimization_System.Services.Interfaces;
 
 public class ZoneService : IZoneService
 {

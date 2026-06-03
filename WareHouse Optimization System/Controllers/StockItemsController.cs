@@ -9,15 +9,16 @@ using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.Services;
 using System;
 using WareHouse_Optimization_System.Services.Implementations;
+using WareHouse_Optimization_System.Services.Interfaces;
 namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class StockItemsController : ControllerBase
     {
-        private readonly StockService _services;
+        private readonly IStockService _services;
 
-        public StockItemsController(StockService services)
+        public StockItemsController(IStockService services)
         {
             _services = services;
         }
@@ -26,9 +27,11 @@ namespace WareHouse_Optimization_System.Controllers
         // Get Stock Items
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StockItem>>> GetStockItems()
+        public async Task<ActionResult<List<StockItem>>> GetStockItems()
         {
-            return await _services.GetAllStockItems();
+            ServiceResult<List<StockItem>> result = await _services.GetAllStockItems();
+            if (!result.IsSuccess) return BadRequest(result.ErrorMessage);
+            return Ok(result.Data);
         }
 
 

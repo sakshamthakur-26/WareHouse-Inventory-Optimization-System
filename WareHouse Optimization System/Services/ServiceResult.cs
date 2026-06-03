@@ -16,6 +16,9 @@ namespace WareHouse_Optimization_System.Services
                 ErrorMessage = null
             };
         }
-        public static ServiceResult<T> Failure(string errorMessage) => new ServiceResult<T> { IsSuccess = false, ErrorMessage = errorMessage };
+        public static ServiceResult<T> Failure(string errorMessage) => new ServiceResult<T> { 
+            IsSuccess = false,
+            ErrorMessage = errorMessage
+        };
     }
 }

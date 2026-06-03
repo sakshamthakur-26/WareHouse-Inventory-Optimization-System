@@ -14,6 +14,16 @@ namespace WareHouse_Optimization_System.Services.Implementations
             _context = context;
         }
 
+
+        public async Task<ServiceResult<List<Category>>> GetAllCategoriesAsync()
+        {
+            var categories = await _context.Categories.ToListAsync();
+            if(categories == null || categories.Count == 0)
+            {
+                return ServiceResult<List<Category>>.Failure("No categories found in the warehouse.");
+            }
+            return ServiceResult<List<Category>>.Success(categories);
+        }
         public async Task<ServiceResult<CategoryResponseDto>> GetZoneForCategoryAsync(string categoryName)
         {
            
