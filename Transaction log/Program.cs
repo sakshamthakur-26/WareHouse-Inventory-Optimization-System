@@ -12,7 +12,7 @@ namespace Transaction_log
             // Add services to the container.
             builder.Services.AddDbContext<TransactionContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("WarehouseDB")));
-
+            
             builder.Services.AddControllers();
 
             var app = builder.Build();

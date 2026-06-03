@@ -1,33 +1,37 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Zone;
 using WareHouse_Optimization_System.Models;
 using ZoneEntity = WareHouse_Optimization_System.Models.Zone;
-namespace WareHouse_Optimization_System.Services;
+namespace WareHouse_Optimization_System.Services.Implementations;
 
+using WareHouse_Optimization_System.Models;
+using WareHouse_Optimization_System.Services.Interfaces;
 
 public class ZoneService : IZoneService
 {
-    private readonly ZoneContext _context;
-    public ZoneService(ZoneContext context) {
+    private readonly WarehouseDbContext _context;
+    public ZoneService(WarehouseDbContext context)
+    {
         _context = context;
     }
 
     //                              CREATE
     public async Task<ZoneResponse> CreateAsync(CreateZoneRequest request)
     {
-       if (string.IsNullOrEmpty(request.Name))
-       {
-           throw new ArgumentException("Zone name cannot be null or empty.", nameof(request.Name));
-       }
+        if (string.IsNullOrEmpty(request.Name))
+        {
+            throw new ArgumentException("Zone name cannot be null or empty.", nameof(request.Name));
+        }
 
-       var present = await _context.Zones.AnyAsync(i => i.Name != null && i.Name.ToLower() == request.Name.ToLower());
+        var present = await _context.Zones.AnyAsync(i => i.Name != null && i.Name.ToLower() == request.Name.ToLower());
         if (present)
         {
             throw new InvalidOperationException("ZONE_ALREADY_EXISTS");
         }
         else
         {
-            var zone = new ZoneApi.Model.Zone
+            var zone = new Zone
             {
                 Name = request.Name,
                 MaxCapacity = request.MaxCapacity
@@ -41,7 +45,7 @@ public class ZoneService : IZoneService
                 ZoneId = zone.ZoneId,
                 Name = request.Name,
                 MaxCapacity = request.MaxCapacity
-                
+
             };
         }
     }
@@ -55,7 +59,7 @@ public class ZoneService : IZoneService
             MaxCapacity = z.MaxCapacity
 
         }).ToListAsync();
-  
+
         //throw new NotImplementedException();
     }
 
@@ -91,7 +95,7 @@ public class ZoneService : IZoneService
     public async Task UpdateAsync(int id, CreateZoneRequest request)
     {
         var found = await _context.Zones.FindAsync(id);
-        if(found == null)
+        if (found == null)
         {
             throw new InvalidOperationException("This data Is Not Present");
         }
@@ -105,12 +109,12 @@ public class ZoneService : IZoneService
     }
 
     //-------------------------------CAPACITY BASED--------------------------------------//
-    
+
 
     public async Task<bool> CheckAvailableCapacityAsync(int zoneId, int requiredSpace)
     {
         var found = await _context.Zones.FindAsync(zoneId);
-        if(found == null)
+        if (found == null)
         {
             throw new KeyNotFoundException("Zone Not Found");
         }
@@ -122,11 +126,11 @@ public class ZoneService : IZoneService
     public async Task UpdateZoneUsageAsync(int zoneId, int spaceUsed)
     {
         var found = await _context.Zones.FindAsync(zoneId);
-        if(found == null)
+        if (found == null)
         {
             throw new KeyNotFoundException("Zone Not Found");
         }
-        if(found.CurrentUsage + spaceUsed > found.MaxCapacity)
+        if (found.CurrentUsage + spaceUsed > found.MaxCapacity)
         {
             throw new InvalidOperationException("Exceeding Zone Capacity");
         }

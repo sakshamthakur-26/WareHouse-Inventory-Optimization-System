@@ -12,6 +12,7 @@ namespace ZoneApi
             // Add services to the container.
 
             builder.Services.AddControllers();
+            
 
             builder.Services.AddScoped<IZoneService, ZoneService>();
 

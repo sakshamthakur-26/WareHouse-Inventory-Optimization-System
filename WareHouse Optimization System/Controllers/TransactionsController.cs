@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.Models;
-using WareHouse_Optimization_System.Services;
 using WareHouse_Optimization_System.DTOs.Transaction;
+using WareHouse_Optimization_System.Services.Implementations;
 
 namespace WareHouse_Optimization_System.Controllers
 {
@@ -15,9 +15,9 @@ namespace WareHouse_Optimization_System.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
-        private readonly ITransactionService _service;
+        private readonly TransactionService _service;
 
-        public TransactionsController(ITransactionService service)
+        public TransactionsController(TransactionService service)
         {
             _service = service; 
         }
@@ -74,7 +74,7 @@ namespace WareHouse_Optimization_System.Controllers
 
                 return CreatedAtAction(
                     nameof(GetTransactionByIdAsync),
-                    new { id = createdTransaction.TransactionId },
+                    new { id = createdTransaction.Data.TransactionId },
                     createdTransaction
                 ); // 201 Created
             }

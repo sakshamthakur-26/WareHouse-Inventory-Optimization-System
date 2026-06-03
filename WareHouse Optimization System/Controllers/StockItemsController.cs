@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -8,101 +7,84 @@ using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.DTOs.Stock;
 using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.Services;
-
+using System;
+using WareHouse_Optimization_System.Services.Implementations;
+using WareHouse_Optimization_System.Services.Interfaces;
 namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class StockItemsController : ControllerBase
     {
-        private readonly StockService _services;
+        private readonly IStockService _services;
 
-        public StockItemsController(StockService services)
+        public StockItemsController(IStockService services)
         {
             _services = services;
         }
 
 
-      
-
-        // PUT: api/StockItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutStockItem(int id, StockItem stockItem)
-        //{
-        //    if (id != stockItem.ItemId)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(stockItem).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!StockItemExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-
-
+        // Get Stock Items
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StockItem>>> GetStockItems()
+        public async Task<ActionResult<List<StockItem>>> GetStockItems()
         {
-            return await _services.GetAllStockItems();
+            ServiceResult<List<StockItem>> result = await _services.GetAllStockItems();
+            if (!result.IsSuccess) return BadRequest(result.ErrorMessage);
+            return Ok(result.Data);
         }
+
+
+        //Get Stock Item By Id
 
         [HttpGet("{id}")]
         public async Task<ActionResult<StockItem>> GetStockItem(int id)
         {
-            StockItem? stockItem = await _services.GetStockItemById(id);
-            if (stockItem == null)
-            {
-                return NotFound();
-            }
-            return stockItem;
+            StockItem? stockItem = await _services.GetStockItemByIdAsync(id);
+            if (stockItem == null) return NotFound();
+            return Ok(stockItem);
         }
+
+
+
+        // Create Stock Items
 
         [HttpPost]
         public async Task<ActionResult<StockItem>> PostStockItem(AddStockDto stockdto)
         {
-            StockItem? stockItem = await _services.AddStockItem(stockdto);
+            ServiceResult<StockItem> result = await _services.AddStockItemAsync(stockdto);
+            if (!result.IsSuccess)
+            {
+            
+                return BadRequest(result.ErrorMessage);
+            }
 
 
-            return CreatedAtAction("GetStockItem", new { id = stockItem.ItemId }, stockItem);
+
+            return CreatedAtAction(nameof(GetStockItem), new { id = result.Data.ItemId }, result.Data);
         }
 
+
         // DELETE: api/StockItems/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStockItem(int id,[FromBody]int quantity)
+        [HttpPost("{id}/remove")]
+        public async Task<IActionResult> RemoveStockItem(int id,[FromBody]int quantity)
         {
 
-            try
-            {
-                var stockItem = await _services.RemoveStock(id, quantity);
-                if (!stockItem) throw new Exception("not deleted");
-                return Ok("deleted");
-            }catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            
-
-
            
+                ServiceResult<bool> result = await _services.RemoveStockAsync(id, quantity);
+                if (!result.IsSuccess) return BadRequest(result.ErrorMessage);
+                return Ok("Stock Successfully removed");
+           
+            
+           
+        }
+
+        public async Task<bool> LowStockAlertAsync(int id)
+        {
+            StockItem? stockItem = await _services.GetStockItemByIdAsync(id);
+            if (stockItem == null) return false;
+            // Assuming a low stock threshold of 10 for demonstration purposes
+            return stockItem.Quantity < 10;
         }
         
       

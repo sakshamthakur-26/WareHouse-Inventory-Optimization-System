@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.DTOs.Zone;
-using WareHouse_Optimization_System.Services;
 using WareHouse_Optimization_System.Models;
+using WareHouse_Optimization_System.Services.Implementations;
 
 namespace WareHouse_Optimization_System.Controllers
 {
@@ -10,9 +10,9 @@ namespace WareHouse_Optimization_System.Controllers
     [ApiController]
     public class ZonesController : ControllerBase
     {
-    private readonly IZoneService _service  ;   
+    private readonly ZoneService _service  ;   
 
-    public ZonesController(IZoneService service)
+    public ZonesController(ZoneService service)
     {
         _service = service;
     }

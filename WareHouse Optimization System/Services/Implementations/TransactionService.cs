@@ -1,14 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Transaction;
 using WareHouse_Optimization_System.Models;
+using WareHouse_Optimization_System.Services.Interfaces;
 
-namespace WareHouse_Optimization_System.Services
+namespace WareHouse_Optimization_System.Services.Implementations
 {
-    public class TransactionService
+    public class TransactionService : ITransactionService
     {
-        private readonly TransactionContext _context;
+        private readonly WarehouseDbContext _context;
 
-        public TransactionService(TransactionContext context)
+        public TransactionService(WarehouseDbContext context)
         {
             _context = context;
         }
@@ -42,7 +44,7 @@ namespace WareHouse_Optimization_System.Services
             };
         }
 
-        public async Task<TransactionLogResponse> CreateTransactionAsync(CreateTransactionRequest request)
+        public async Task<ServiceResult<TransactionLogResponse>> CreateTransactionAsync(CreateTransactionRequest request)
         {
             var transaction = new Transaction
             {
@@ -53,9 +55,14 @@ namespace WareHouse_Optimization_System.Services
             };
 
             _context.Transactions.Add(transaction);
-            await _context.SaveChangesAsync();
+            var res = await _context.SaveChangesAsync();
 
-            return new TransactionLogResponse
+            if (res <= 0)
+            {
+                return ServiceResult<TransactionLogResponse>.Failure("Failed to create transaction");
+            }
+
+            var responseLog = new TransactionLogResponse
             {
                 TransactionId = transaction.TransactionId,
                 ItemId = transaction.ItemId,
@@ -63,6 +70,7 @@ namespace WareHouse_Optimization_System.Services
                 Type = transaction.Type,
                 Timestamp = transaction.Timestamp
             };
+            return ServiceResult<TransactionLogResponse>.Success(responseLog);
         }
     }
 }
