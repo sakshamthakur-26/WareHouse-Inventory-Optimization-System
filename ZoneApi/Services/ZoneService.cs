@@ -2,152 +2,149 @@
 using Zone.DTOs;
 using ZoneApi.Model;
 using ZoneEntity = ZoneApi.Model.Zone;
-namespace Zone.Services;
+using Zone.Services;
 
-
-public class ZoneService : IZoneService
+namespace Zone.Services
 {
-    private readonly ZoneContext _context;
-    public ZoneService(ZoneContext context) {
-        _context = context;
-    }
 
-    //                              CREATE
-    public async Task<ZoneResponse> CreateAsync(CreateZoneRequest request)
+    public class ZoneService : IZoneService
     {
-       if (string.IsNullOrEmpty(request.Name))
-       {
-           throw new ArgumentException("Zone name cannot be null or empty.", nameof(request.Name));
-       }
-
-       var present = await _context.Zones.AnyAsync(i => i.Name != null && i.Name.ToLower() == request.Name.ToLower());
-        if (present)
+        private readonly ZoneContext _context;
+        public ZoneService(ZoneContext context)
         {
-            throw new InvalidOperationException("ZONE_ALREADY_EXISTS");
+            _context = context;
         }
-        else
-        {
-            var zone = new ZoneApi.Model.Zone
-            {
-                Name = request.Name,
-                MaxCapacity = request.MaxCapacity
-            };
 
-            _context.Zones.Add(zone);
+        //                              CREATE
+        public async Task<ServiceResult<ZoneResponse>> CreateAsync(CreateZoneRequest request)
+        {
+            if (string.IsNullOrEmpty(request.Name))
+            {
+                return ServiceResult<ZoneResponse>.Failure("Zone name cannot be null or empty.");
+            }
+
+            var present = await _context.Zones.AnyAsync(i => i.Name != null && i.Name.ToLower() == request.Name.ToLower());
+            if (present)
+            {
+                return ServiceResult<ZoneResponse>.Failure("ZONE_ALREADY_EXISTS");
+            }
+            else
+            {
+                var zone = new ZoneApi.Model.Zone
+                {
+                    Name = request.Name,
+                    MaxCapacity = request.MaxCapacity
+                };
+
+                _context.Zones.Add(zone);
+                await _context.SaveChangesAsync();
+
+                return ServiceResult<ZoneResponse>.Success(new ZoneResponse
+                {
+                    ZoneId = zone.ZoneId,
+                    Name = request.Name,
+                    MaxCapacity = request.MaxCapacity
+
+                });
+            }
+        }
+        //                       GET ALL
+        public async Task<ServiceResult<IEnumerable<ZoneResponse>>> GetAllAsync()
+        {
+            var list = await _context.Zones.Select(z => new ZoneResponse
+            {
+                ZoneId = z.ZoneId,
+                Name = z.Name,
+                MaxCapacity = z.MaxCapacity
+
+            }).ToListAsync();
+
+            return ServiceResult<IEnumerable<ZoneResponse>>.Success(list);
+
+            //throw new NotImplementedException();
+        }
+
+        //                  DELETE
+        public async Task<ServiceResult<object>> DeleteAsync(int id)
+        {
+            var present = await _context.Zones.FindAsync(id);
+            if (present == null) return ServiceResult<object>.Failure("Zone not found");
+
+            _context.Zones.Remove(present);
             await _context.SaveChangesAsync();
 
-            return new ZoneResponse
-            {
-                ZoneId = zone.ZoneId,
-                Name = request.Name,
-                MaxCapacity = request.MaxCapacity
-                
-            };
+            return ServiceResult<object>.Success(null);
         }
-    }
-    //                       GET ALL
-    public async Task<IEnumerable<ZoneResponse>> GetAllAsync()
-    {
-        return await _context.Zones.Select(z => new ZoneResponse
+
+
+        //                      Get Zone by Its ID
+        public async Task<ServiceResult<ZoneResponse>> GetByIdAsync(int id)
         {
-            ZoneId = z.ZoneId,
-            Name = z.Name,
-            MaxCapacity = z.MaxCapacity
+            var found = await _context.Zones.FindAsync(id);
+            if (found == null) return ServiceResult<ZoneResponse>.Failure("Zone Data Not Found");
 
-        }).ToListAsync();
-  
-        //throw new NotImplementedException();
-    }
-
-    //                  DELETE
-    public async Task DeleteAsync(int id)
-    {
-        var present = await _context.Zones.FindAsync(id);
-        if (present == null) throw new KeyNotFoundException();
-
-        _context.Zones.Remove(present);
-        await _context.SaveChangesAsync();
-    }
-
-
-    //                      Get Zone by Its ID
-    public async Task<ZoneResponse> GetByIdAsync(int id)
-    {
-        var found = await _context.Zones.FindAsync(id);
-        if (found == null)
-        {
-            throw new InvalidOperationException("Zone Data Not Found");
+            return ServiceResult<ZoneResponse>.Success(MapToResponse(found));
         }
-        else
+
+
+        //                           UPDSTE Zone Id find
+
+        public async Task<ServiceResult<object>> UpdateAsync(int id, CreateZoneRequest request)
         {
+            var found = await _context.Zones.FindAsync(id);
+            if (found == null) return ServiceResult<object>.Failure("This data Is Not Present");
 
-            return MapToResponse(found);
-        }
-    }
-
-
-    //                           UPDSTE Zone Id find
-
-    public async Task UpdateAsync(int id, CreateZoneRequest request)
-    {
-        var found = await _context.Zones.FindAsync(id);
-        if(found == null)
-        {
-            throw new InvalidOperationException("This data Is Not Present");
-        }
-        else
-        {
             found.Name = request.Name;
             found.MaxCapacity = request.MaxCapacity;
-        }
 
-        await _context.SaveChangesAsync();
-    }
-
-    //-------------------------------CAPACITY BASED--------------------------------------//
-    
-
-    public async Task<bool> CheckAvailableCapacityAsync(int zoneId, int requiredSpace)
-    {
-        var found = await _context.Zones.FindAsync(zoneId);
-        if(found == null)
-        {
-            throw new KeyNotFoundException("Zone Not Found");
-        }
-
-        return (found.MaxCapacity - found.CurrentUsage) >= requiredSpace;
-        //throw new NotImplementedException();
-    }
-
-    public async Task UpdateZoneUsageAsync(int zoneId, int spaceUsed)
-    {
-        var found = await _context.Zones.FindAsync(zoneId);
-        if(found == null)
-        {
-            throw new KeyNotFoundException("Zone Not Found");
-        }
-        if(found.CurrentUsage + spaceUsed > found.MaxCapacity)
-        {
-            throw new InvalidOperationException("Exceeding Zone Capacity");
-        }
-        else
-        {
-            found.CurrentUsage += spaceUsed;
             await _context.SaveChangesAsync();
-        }
-        //throw new NotImplementedException();
-    }
 
-    private static ZoneResponse MapToResponse(ZoneEntity z)
-    {
-        return new ZoneResponse
+            return ServiceResult<object>.Success(null);
+        }
+
+        //-------------------------------CAPACITY BASED--------------------------------------//
+
+
+        public async Task<bool> CheckAvailableCapacityAsync(int zoneId, int requiredSpace)
         {
-            ZoneId = z.ZoneId,
-            Name = z.Name,
-            MaxCapacity = z.MaxCapacity,
-            CurrentUsage = z.CurrentUsage
-        };
+            var found = await _context.Zones.FindAsync(zoneId);
+            if (found == null)
+            {
+                throw new KeyNotFoundException("Zone Not Found");
+            }
+
+            return (found.MaxCapacity - found.CurrentUsage) >= requiredSpace;
+        }
+
+        public async Task UpdateZoneUsageAsync(int zoneId, int spaceUsed)
+        {
+            var found = await _context.Zones.FindAsync(zoneId);
+            if (found == null)
+            {
+                throw new KeyNotFoundException("Zone Not Found");
+            }
+            if (found.CurrentUsage + spaceUsed > found.MaxCapacity)
+            {
+                throw new InvalidOperationException("Exceeding Zone Capacity");
+            }
+            else
+            {
+                found.CurrentUsage += spaceUsed;
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        private static ZoneResponse MapToResponse(ZoneEntity z)
+        {
+            return new ZoneResponse
+            {
+                ZoneId = z.ZoneId,
+                Name = z.Name,
+                MaxCapacity = z.MaxCapacity,
+                CurrentUsage = z.CurrentUsage
+            };
+        }
+
     }
 
 }
-

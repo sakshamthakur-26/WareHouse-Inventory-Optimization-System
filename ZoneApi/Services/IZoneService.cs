@@ -1,23 +1,18 @@
-﻿using Zone.DTOs;
+﻿using System.Collections.Generic;
+using Zone.DTOs;
+using Zone.Services;
 namespace Zone.Services
 {
     public interface IZoneService
     {
-        Task<IEnumerable<ZoneResponse>> GetAllAsync();
-        Task<ZoneResponse> GetByIdAsync(int id); // why do we use IEnnumerable and when to ??
+        Task<ServiceResult<IEnumerable<ZoneResponse>>> GetAllAsync();
+        Task<ServiceResult<ZoneResponse>> GetByIdAsync(int id);
+        Task<ServiceResult<ZoneResponse>> CreateAsync(CreateZoneRequest request);
+        Task<ServiceResult<object>> UpdateAsync(int id, CreateZoneRequest request);
+        Task<ServiceResult<object>> DeleteAsync(int id);
 
-        Task<ZoneResponse> CreateAsync(CreateZoneRequest request);
-        Task UpdateAsync(int id, CreateZoneRequest request);
-        Task DeleteAsync(int id);
-
-
-        ////////////////////////////////////////////////////
-        //                 CAPACITY BASED
-
-
+        // Capacity based methods preserved
         Task<bool> CheckAvailableCapacityAsync(int zoneId, int requiredSpace);
         Task UpdateZoneUsageAsync(int zoneId, int spaceUsed);
-
-
     }
 }

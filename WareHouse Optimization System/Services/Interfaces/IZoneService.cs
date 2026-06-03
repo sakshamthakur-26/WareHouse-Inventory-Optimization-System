@@ -1,15 +1,16 @@
 ﻿using WareHouse_Optimization_System.DTOs.Zone;
+using WareHouse_Optimization_System.Services;
 
 namespace WareHouse_Optimization_System.Services.Interfaces
 {
     public interface IZoneService
     {
-        Task<bool> CheckAvailableCapacityAsync(int zoneId, int requiredSpace);
-        Task<ZoneResponse> CreateAsync(CreateZoneRequest request);
-        Task DeleteAsync(int id);
-        Task<IEnumerable<ZoneResponse>> GetAllAsync();
-        Task<ZoneResponse> GetByIdAsync(int id);
-        Task UpdateAsync(int id, CreateZoneRequest request);
-        Task UpdateZoneUsageAsync(int zoneId, int spaceUsed);
+        Task<ServiceResult<IEnumerable<ZoneResponse>>> GetAllAsync();
+        Task<ServiceResult<ZoneResponse>> GetByIdAsync(int id);
+        Task<ServiceResult<ZoneResponse>> CreateAsync(CreateZoneRequest request);
+        Task<ServiceResult<object>> UpdateAsync(int id, CreateZoneRequest request);
+        Task<ServiceResult<object>> DeleteAsync(int id);
+
+        // Capacity based methods kept internally in implementation (not part of public contract)
     }
 }

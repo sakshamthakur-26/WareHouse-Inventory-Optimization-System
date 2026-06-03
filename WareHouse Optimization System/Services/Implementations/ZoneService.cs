@@ -91,21 +91,17 @@ public class ZoneService : IZoneService
 
 
     //                           UPDSTE Zone Id find
-
-    public async Task UpdateAsync(int id, CreateZoneRequest request)
+    public async Task<ServiceResult<object>> UpdateAsync(int id, CreateZoneRequest request)
     {
         var found = await _context.Zones.FindAsync(id);
-        if (found == null)
-        {
-            throw new InvalidOperationException("This data Is Not Present");
-        }
-        else
-        {
-            found.Name = request.Name;
-            found.MaxCapacity = request.MaxCapacity;
-        }
+        if (found == null) return ServiceResult<object>.Failure("This data Is Not Present");
+
+        found.Name = request.Name;
+        found.MaxCapacity = request.MaxCapacity;
 
         await _context.SaveChangesAsync();
+
+        return ServiceResult<object>.Success(null);
     }
 
     //-------------------------------CAPACITY BASED--------------------------------------//
