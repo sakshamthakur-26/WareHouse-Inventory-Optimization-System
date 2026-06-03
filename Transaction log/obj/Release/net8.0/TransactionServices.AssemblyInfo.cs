@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TransactionServices")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+509d385dbfe60882ae2a2b711a050fff36b652b1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ce65cf866c16c1d10c97412b15c23306c731ce7")]
 [assembly: System.Reflection.AssemblyProductAttribute("TransactionServices")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TransactionServices")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

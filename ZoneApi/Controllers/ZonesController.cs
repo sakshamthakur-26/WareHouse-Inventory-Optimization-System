@@ -21,6 +21,7 @@ public class ZonesController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var result = await _service.GetAllAsync();
+
         if (result.IsSuccess) return Ok(result);
         return BadRequest(result);
     }
@@ -29,15 +30,17 @@ public class ZonesController : ControllerBase
     public async Task<IActionResult> GetById(int id)
     {
         var result = await _service.GetByIdAsync(id);
+        if (result.IsSuc
         if (!result.IsSuccess) return NotFound(result);
         return Ok(result);
     }
 
     [HttpPost]
     //[Route("/Create")]
-    public async Task<IActionResult> Create(CreateZoneRequest request)
+    public async Task<IActionResult> Create(UpdateZoneRequest request)
     {
         var result = await _service.CreateAsync(request);
+
         if (!result.IsSuccess) return BadRequest(result);
         return CreatedAtAction(nameof(GetById), new { id = result.Data.ZoneId }, result);
     }
@@ -47,6 +50,7 @@ public class ZonesController : ControllerBase
     public async Task<IActionResult> Update(int id, CreateZoneRequest request)
     {
         var result = await _service.UpdateAsync(id, request);
+
         if (!result.IsSuccess) return BadRequest(result);
         return Ok(result);
     }
@@ -55,6 +59,7 @@ public class ZonesController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _service.DeleteAsync(id);
+
         if (!result.IsSuccess) return NotFound(result);
         return Ok(result);
     }

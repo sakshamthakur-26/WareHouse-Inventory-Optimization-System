@@ -64,8 +64,9 @@ namespace Zone.Services
             //throw new NotImplementedException();
         }
 
-        //                  DELETE
-        public async Task<ServiceResult<object>> DeleteAsync(int id)
+        //                  DELETE  : Now private not used ...
+
+        private async Task<ServiceResult<object>> DeleteAsync(int id)
         {
             var present = await _context.Zones.FindAsync(id);
             if (present == null) return ServiceResult<object>.Failure("Zone not found");
@@ -77,7 +78,7 @@ namespace Zone.Services
         }
 
 
-        //                      Get Zone by Its ID
+        //                      Get Zone by Its ID : 
         public async Task<ServiceResult<ZoneResponse>> GetByIdAsync(int id)
         {
             var found = await _context.Zones.FindAsync(id);

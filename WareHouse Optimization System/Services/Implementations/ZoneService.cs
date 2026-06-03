@@ -91,7 +91,7 @@ public class ZoneService : IZoneService
 
 
     //                           UPDSTE Zone Id find
-    public async Task<ServiceResult<object>> UpdateAsync(int id, CreateZoneRequest request)
+    public async Task<ServiceResult<object>> UpdateAsync(int id, UpdateZoneRequest request)
     {
         var found = await _context.Zones.FindAsync(id);
         if (found == null) return ServiceResult<object>.Failure("This data Is Not Present");

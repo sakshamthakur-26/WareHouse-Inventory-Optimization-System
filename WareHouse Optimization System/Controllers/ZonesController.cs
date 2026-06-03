@@ -46,15 +46,18 @@ namespace WareHouse_Optimization_System.Controllers
     }
 
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, CreateZoneRequest request)
-    {
-        var result = await _service.UpdateAsync(id, request);
-        if (!result.IsSuccess) return BadRequest(result);
-        return Ok(result);
-    }
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch(int id, UpdateZoneReqest request)
+        {
+            var result = await _service.PatchAsync(id, request);
 
-    [HttpDelete("{id}")]
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _service.DeleteAsync(id);
