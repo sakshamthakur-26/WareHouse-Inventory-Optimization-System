@@ -64,9 +64,8 @@ namespace Zone.Services
             //throw new NotImplementedException();
         }
 
-        //                  DELETE  : Now private not used ...
-
-        private async Task<ServiceResult<object>> DeleteAsync(int id)
+        //                  DELETE
+        public async Task<ServiceResult<object>> DeleteAsync(int id)
         {
             var present = await _context.Zones.FindAsync(id);
             if (present == null) return ServiceResult<object>.Failure("Zone not found");
@@ -90,13 +89,13 @@ namespace Zone.Services
 
         //                           UPDSTE Zone Id find
 
-        public async Task<ServiceResult<object>> UpdateAsync(int id, CreateZoneRequest request)
+        public async Task<ServiceResult<object>> UpdateAsync(int id, UpdateZoneRequest request)
         {
             var found = await _context.Zones.FindAsync(id);
             if (found == null) return ServiceResult<object>.Failure("This data Is Not Present");
 
-            found.Name = request.Name;
-            found.MaxCapacity = request.MaxCapacity;
+            if (request.Name != null) found.Name = request.Name;
+            if (request.MaxCapacity.HasValue) found.MaxCapacity = request.MaxCapacity.Value;
 
             await _context.SaveChangesAsync();
 
