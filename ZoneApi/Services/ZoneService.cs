@@ -134,7 +134,7 @@ namespace Zone.Services
             }
         }
 
-        private static ZoneResponse MapToResponse(ZoneEntity z)
+        public static ZoneResponse MapToResponse(ZoneEntity z)
         {
             return new ZoneResponse
             {

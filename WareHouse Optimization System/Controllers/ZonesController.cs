@@ -47,9 +47,9 @@ namespace WareHouse_Optimization_System.Controllers
 
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, UpdateZoneReqest request)
+        public async Task<IActionResult> Patch(int id, UpdateZoneRequest request)
         {
-            var result = await _service.PatchAsync(id, request);
+            var result = await _service.UpdateAsync(id, request);
 
             if (!result.IsSuccess)
                 return BadRequest(result);

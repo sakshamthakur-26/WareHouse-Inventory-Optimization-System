@@ -159,3 +159,6 @@ C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\WareHouse 
 C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.RazorAssemblyInfo.cs
 C:\Users\2492266\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.sourcelink.json
 >>>>>>> origin/Transaction
+C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.dll
+C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\obj\Debug\net8.0\refint\WareHouse Optimization System.dll
+C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\obj\Debug\net8.0\WareHouse Optimization System.pdb
