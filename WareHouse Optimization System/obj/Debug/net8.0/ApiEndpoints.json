@@ -254,22 +254,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "VendorManagement.Controllers.VendorsController",
-    "Method": "Delete",
-    "RelativePath": "api/v1/Vendors/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
     "Method": "Get",
     "RelativePath": "api/Zones",

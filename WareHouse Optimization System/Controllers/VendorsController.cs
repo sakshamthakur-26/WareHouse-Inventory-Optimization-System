@@ -6,7 +6,7 @@
     using VendorManagement.Services;
 
     [ApiController]
-    [Route("api/v1/[controller]")] 
+    [Route("api/v1/[controller]")]
     public class VendorsController : ControllerBase
     {
         private readonly VendorService _service;
@@ -18,15 +18,20 @@
 
         // GET: api/v1/vendors
         [HttpGet]
-        public async Task<IActionResult> GetAll() => Ok(await _service.GetVendors());
+        public async Task<IActionResult> GetAll()
+        {
+            var res = await _service.GetAllAsync();
+            if (res == null || !res.IsSuccess) return NotFound(new ErrorResponse { ErrorCode = "VENDORS_NOT_FOUND", Message = res?.ErrorMessage ?? "Vendors not found" });
+            return Ok(res.Data);
+        }
 
         // GET: api/v1/vendors/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var v = await _service.GetVendor(id);
-            if (v == null) return NotFound(new ErrorResponse { ErrorCode = "VENDOR_NOT_FOUND", Message = "Vendor not found" });
-            return Ok(v);
+            var res = await _service.GetByIdAsync(id);
+            if (res == null || !res.IsSuccess || res.Data == null) return NotFound(new ErrorResponse { ErrorCode = "VENDOR_NOT_FOUND", Message = "Vendor not found" });
+            return Ok(res.Data);
         }
 
         // POST: api/v1/vendors
@@ -37,38 +42,36 @@
             {
                 Name = req.Name,
                 Email = req.Email,
-                PhoneNumber = (double)req.PhoneNumber,
+                PhoneNumber = req.PhoneNumber ?? string.Empty,
                 GoodsSupplied = req.GoodsSupplied
-
             };
-            await _service.CreateVendor(v);
-            return CreatedAtAction(nameof(GetById), new { id = v.VendorId }, v); // 201 Created
+
+            var res = await _service.AddAsync(v);
+            if (res == null || !res.IsSuccess) return BadRequest(new ErrorResponse { ErrorCode = "VENDOR_CREATE_FAILED", Message = res?.ErrorMessage ?? "Failed to create vendor" });
+
+            return CreatedAtAction(nameof(GetById), new { id = res.Data.VendorId }, res.Data); // 201 Created
         }
 
         // PUT: api/v1/vendors/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] VendorRequest req)
         {
-            var v = await _service.GetVendor(id);
-            if (v == null) return NotFound(new ErrorResponse { ErrorCode = "VENDOR_NOT_FOUND", Message = "Vendor not found to update" });
+            var existingRes = await _service.GetByIdAsync(id);
+            if (existingRes == null || !existingRes.IsSuccess || existingRes.Data == null)
+                return NotFound(new ErrorResponse { ErrorCode = "VENDOR_NOT_FOUND", Message = "Vendor not found to update" });
 
+            var v = existingRes.Data;
             v.Name = req.Name;
             v.Email = req.Email;
-            v.PhoneNumber = req.PhoneNumber ?? 0;
+            v.PhoneNumber = v.PhoneNumber;
             v.GoodsSupplied = req.GoodsSupplied;
 
-            await _service.UpdateVendor(v);
-            return Ok(v); // 200 OK
+            var res = await _service.UpdateAsync(v);
+            if (res == null || !res.IsSuccess) return BadRequest(new ErrorResponse { ErrorCode = "VENDOR_UPDATE_FAILED", Message = res?.ErrorMessage ?? "Failed to update vendor" });
+
+            return Ok(res.Data); // 200 OK
         }
 
-        // DELETE: api/v1/vendors/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var success = await _service.RemoveVendor(id);
-            if (!success) return NotFound(new ErrorResponse { ErrorCode = "VENDOR_NOT_FOUND", Message = "Vendor not found to delete" });
-
-            return Ok(new { message = "Deleted successfully" });
-        }
+        // Note: Delete endpoint removed because service does not expose a delete method currently.
     }
 }

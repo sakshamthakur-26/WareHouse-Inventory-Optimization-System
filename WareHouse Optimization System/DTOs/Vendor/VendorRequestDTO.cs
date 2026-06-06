@@ -18,7 +18,7 @@ namespace VendorManagement.DTOs
 
  
         [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Invalid phone number phone number should contain 10 numbers")]
-        public double? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string GoodsSupplied { get; set; }
         
     }

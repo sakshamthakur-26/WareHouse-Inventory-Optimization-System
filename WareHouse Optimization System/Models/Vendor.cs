@@ -20,9 +20,12 @@ namespace VendorManagement.Models
         [Required]
         public string Email { get; set; }
         [Required]
-        public double PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [Required]
         public string GoodsSupplied { get; set; }
+
+  
+        public bool IsActive { get; set; }
 
       
     }
