@@ -41,6 +41,7 @@ builder.Services.AddScoped<IZoneService, ZoneService>();
 builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>(); 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IVendorService, VendorService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

@@ -302,6 +302,69 @@
     ]
   },
   {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.VendorsController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Vendors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.VendorsController",
+    "Method": "Create",
+    "RelativePath": "api/v1/Vendors",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "WareHouse_Optimization_System.DTOs.VendorRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.VendorsController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/Vendors/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.VendorsController",
+    "Method": "Update",
+    "RelativePath": "api/v1/Vendors/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "req",
+        "Type": "WareHouse_Optimization_System.DTOs.VendorRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
     "Method": "Get",
     "RelativePath": "api/Zones",

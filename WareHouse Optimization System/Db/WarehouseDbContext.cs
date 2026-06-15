@@ -13,6 +13,7 @@ namespace WareHouse_Optimization_System.Db
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Zone> Zones { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
 
     }
 }
