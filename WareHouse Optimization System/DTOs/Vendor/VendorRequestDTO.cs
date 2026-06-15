@@ -13,13 +13,10 @@ namespace VendorManagement.DTOs
     {
         public string Name { get; set; }
 
-        [EmailAddress(ErrorMessage = "Invalid email format. The email must contain an '@' character.")]
         public string Email { get; set; }
-
- 
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Invalid phone number phone number should contain 10 numbers")]
         public string PhoneNumber { get; set; }
         public string GoodsSupplied { get; set; }
-        
+        public bool IsActive { get; set; }
+
     }
 }

@@ -9,7 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace VendorManagement.Models
 {
-
+    [Index(nameof(Email), IsUnique = true)]
+    [Index(nameof(PhoneNumber), IsUnique = true)]
     public class Vendor
     {
         public int VendorId { get; set; }

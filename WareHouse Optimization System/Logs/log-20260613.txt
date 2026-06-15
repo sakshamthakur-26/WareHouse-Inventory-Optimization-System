@@ -1,0 +1,247 @@
+2026-06-13 15:48:28.555 +05:30 [INF] Starting web host
+2026-06-13 15:48:31.425 +05:30 [FTL] Application failed to start correctly check configurations
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: WareHouse_Optimization_System.Services.Interfaces.IStockService Lifetime: Scoped ImplementationType: WareHouse_Optimization_System.Services.Implementations.StockService': Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: WareHouse_Optimization_System.Services.Interfaces.IStockService Lifetime: Scoped ImplementationType: WareHouse_Optimization_System.Services.Implementations.StockService': Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\Program.cs:line 43
+2026-06-13 15:49:11.111 +05:30 [INF] Starting web host
+2026-06-13 15:49:12.670 +05:30 [FTL] Application failed to start correctly check configurations
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: WareHouse_Optimization_System.Services.Interfaces.IStockService Lifetime: Scoped ImplementationType: WareHouse_Optimization_System.Services.Implementations.StockService': Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: WareHouse_Optimization_System.Services.Interfaces.IStockService Lifetime: Scoped ImplementationType: WareHouse_Optimization_System.Services.Implementations.StockService': Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\Program.cs:line 43
+2026-06-13 15:49:40.280 +05:30 [INF] Starting web host
+2026-06-13 15:49:41.696 +05:30 [FTL] Application failed to start correctly check configurations
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: WareHouse_Optimization_System.Services.Interfaces.IStockService Lifetime: Scoped ImplementationType: WareHouse_Optimization_System.Services.Implementations.StockService': Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: WareHouse_Optimization_System.Services.Interfaces.IStockService Lifetime: Scoped ImplementationType: WareHouse_Optimization_System.Services.Implementations.StockService': Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\Program.cs:line 43
+2026-06-13 15:50:50.985 +05:30 [INF] Starting web host
+2026-06-13 15:50:52.472 +05:30 [FTL] Application failed to start correctly check configurations
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: WareHouse_Optimization_System.Services.Interfaces.IStockService Lifetime: Scoped ImplementationType: WareHouse_Optimization_System.Services.Implementations.StockService': Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: WareHouse_Optimization_System.Services.Interfaces.IStockService Lifetime: Scoped ImplementationType: WareHouse_Optimization_System.Services.Implementations.StockService': Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'WareHouse_Optimization_System.Services.Interfaces.ICategoryService' while attempting to activate 'WareHouse_Optimization_System.Services.Implementations.StockService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\Program.cs:line 43
+2026-06-13 15:53:16.600 +05:30 [INF] Starting web host
+2026-06-13 15:53:18.036 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 15:53:18.494 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-13 15:53:18.617 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-13 15:53:18.619 +05:30 [INF] Hosting environment: Development
+2026-06-13 15:53:18.621 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-13 15:53:19.762 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-13 15:53:20.137 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 665.7586ms
+2026-06-13 15:53:20.148 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-13 15:54:28.070 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5281/api/v1/Vendors - application/json 147
+2026-06-13 15:54:28.091 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System)'
+2026-06-13 15:54:28.185 +05:30 [INF] Route matched with {action = "Create", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-13 15:54:30.449 +05:30 [INF] Executed DbCommand (119ms) [Parameters=[@__vendor_PhoneNumber_0='?' (Size = 4000), @__ToLower_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Vendors] AS [v]
+        WHERE [v].[PhoneNumber] = @__vendor_PhoneNumber_0 OR LOWER([v].[Email]) = @__ToLower_1) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-13 15:54:30.730 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Vendors] ([Email], [GoodsSupplied], [IsActive], [Name], [PhoneNumber])
+OUTPUT INSERTED.[VendorId]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2026-06-13 15:54:30.787 +05:30 [INF] Executing CreatedAtActionResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-13 15:54:30.836 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System) in 2643.49ms
+2026-06-13 15:54:30.839 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System)'
+2026-06-13 15:54:30.851 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5281/api/v1/Vendors - 201 null application/json; charset=utf-8 2782.177ms
+2026-06-13 15:55:32.813 +05:30 [INF] Starting web host
+2026-06-13 15:55:34.513 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 15:55:34.996 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-13 15:55:35.160 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-13 15:55:35.164 +05:30 [INF] Hosting environment: Development
+2026-06-13 15:55:35.166 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-13 15:55:36.138 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-13 15:55:36.538 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 420.3914ms
+2026-06-13 15:55:36.550 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-13 15:55:48.041 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5281/api/v1/Vendors - application/json 148
+2026-06-13 15:55:48.058 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System)'
+2026-06-13 15:55:48.108 +05:30 [INF] Route matched with {action = "Create", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-13 15:55:49.916 +05:30 [INF] Executed DbCommand (94ms) [Parameters=[@__vendor_PhoneNumber_0='?' (Size = 4000), @__ToLower_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Vendors] AS [v]
+        WHERE [v].[PhoneNumber] = @__vendor_PhoneNumber_0 OR LOWER([v].[Email]) = @__ToLower_1) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-13 15:55:50.165 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Vendors] ([Email], [GoodsSupplied], [IsActive], [Name], [PhoneNumber])
+OUTPUT INSERTED.[VendorId]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2026-06-13 15:55:50.222 +05:30 [INF] Executing CreatedAtActionResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-13 15:55:50.258 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System) in 2143.1302ms
+2026-06-13 15:55:50.262 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System)'
+2026-06-13 15:55:50.273 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5281/api/v1/Vendors - 201 null application/json; charset=utf-8 2232.1342ms
+2026-06-13 15:57:18.258 +05:30 [INF] Starting web host
+2026-06-13 15:57:20.199 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 15:57:20.647 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-13 15:57:20.882 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-13 15:57:20.885 +05:30 [INF] Hosting environment: Development
+2026-06-13 15:57:20.888 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-13 15:57:21.654 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-13 15:57:22.078 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 446.5274ms
+2026-06-13 15:57:22.092 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-13 15:57:49.573 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5281/api/v1/Vendors - application/json 148
+2026-06-13 15:57:49.594 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System)'
+2026-06-13 15:57:49.646 +05:30 [INF] Route matched with {action = "Create", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-13 15:57:51.551 +05:30 [INF] Executed DbCommand (105ms) [Parameters=[@__vendor_PhoneNumber_0='?' (Size = 4000), @__ToLower_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Vendors] AS [v]
+        WHERE [v].[PhoneNumber] = @__vendor_PhoneNumber_0 OR LOWER([v].[Email]) = @__ToLower_1) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-13 15:57:51.802 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Vendors] ([Email], [GoodsSupplied], [IsActive], [Name], [PhoneNumber])
+OUTPUT INSERTED.[VendorId]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2026-06-13 15:57:51.879 +05:30 [INF] Executing CreatedAtActionResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-13 15:57:51.919 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System) in 2265.8219ms
+2026-06-13 15:57:51.923 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System)'
+2026-06-13 15:57:51.934 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5281/api/v1/Vendors - 201 null application/json; charset=utf-8 2362.2145ms
+2026-06-13 15:59:02.778 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - application/json 149
+2026-06-13 15:59:02.791 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-13 15:59:02.805 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-13 15:59:02.953 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-13 15:59:02.991 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Vendors] SET [Email] = @p0, [GoodsSupplied] = @p1, [IsActive] = @p2, [Name] = @p3, [PhoneNumber] = @p4
+OUTPUT 1
+WHERE [VendorId] = @p5;
+2026-06-13 15:59:02.999 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-13 15:59:03.002 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 194.0846ms
+2026-06-13 15:59:03.005 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-13 15:59:03.008 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - 200 null application/json; charset=utf-8 230.2132ms
+2026-06-13 16:00:24.922 +05:30 [INF] Starting web host
+2026-06-13 16:00:26.285 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-13 16:00:26.622 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-13 16:00:26.744 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-13 16:00:26.746 +05:30 [INF] Hosting environment: Development
+2026-06-13 16:00:26.748 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-13 16:00:27.135 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-13 16:00:27.472 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 364.817ms
+2026-06-13 16:00:27.486 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-13 16:00:30.472 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - application/json 149
+2026-06-13 16:00:30.491 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-13 16:00:30.544 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-13 16:00:32.615 +05:30 [INF] Executed DbCommand (103ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-13 16:00:32.854 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Vendors] SET [Email] = @p0, [GoodsSupplied] = @p1, [IsActive] = @p2, [Name] = @p3, [PhoneNumber] = @p4
+OUTPUT 1
+WHERE [VendorId] = @p5;
+2026-06-13 16:00:32.881 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-13 16:00:32.895 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 2343.4617ms
+2026-06-13 16:00:32.898 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-13 16:00:32.916 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - 200 null application/json; charset=utf-8 2444.7269ms
+2026-06-13 16:00:58.599 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/6 - application/json 149
+2026-06-13 16:00:58.608 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-13 16:00:58.612 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-13 16:00:58.666 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-13 16:00:58.682 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Vendors] SET [Email] = @p0, [GoodsSupplied] = @p1, [IsActive] = @p2, [Name] = @p3, [PhoneNumber] = @p4
+OUTPUT 1
+WHERE [VendorId] = @p5;
+2026-06-13 16:00:58.688 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-13 16:00:58.696 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 79.7649ms
+2026-06-13 16:00:58.698 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-13 16:00:58.700 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/6 - 200 null application/json; charset=utf-8 101.3772ms
+2026-06-13 16:01:54.924 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/6 - application/json 148
+2026-06-13 16:01:54.929 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-13 16:01:54.931 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-13 16:01:55.048 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-13 16:01:55.062 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Vendors] SET [Email] = @p0, [GoodsSupplied] = @p1, [IsActive] = @p2, [Name] = @p3, [PhoneNumber] = @p4
+OUTPUT 1
+WHERE [VendorId] = @p5;
+2026-06-13 16:01:55.067 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-13 16:01:55.071 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 134.7695ms
+2026-06-13 16:01:55.074 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-13 16:01:55.077 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/6 - 200 null application/json; charset=utf-8 152.4756ms

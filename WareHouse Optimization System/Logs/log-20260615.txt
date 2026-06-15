@@ -1,0 +1,241 @@
+2026-06-15 09:51:34.717 +05:30 [INF] Starting web host
+2026-06-15 09:51:37.391 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-15 09:51:37.864 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-15 09:51:37.971 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-15 09:51:37.972 +05:30 [INF] Hosting environment: Development
+2026-06-15 09:51:37.974 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-15 09:51:39.354 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-15 09:51:39.839 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 518.8583ms
+2026-06-15 09:51:39.857 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-15 09:52:22.331 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/6 - application/json 153
+2026-06-15 09:52:22.371 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 09:52:22.518 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 09:52:25.524 +05:30 [INF] Executed DbCommand (107ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 09:52:25.803 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Vendors] SET [Email] = @p0, [GoodsSupplied] = @p1, [IsActive] = @p2, [Name] = @p3, [PhoneNumber] = @p4
+OUTPUT 1
+WHERE [VendorId] = @p5;
+2026-06-15 09:52:25.835 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-15 09:52:25.852 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 3320.5051ms
+2026-06-15 09:52:25.856 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 09:52:25.872 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/6 - 200 null application/json; charset=utf-8 3543.0344ms
+2026-06-15 09:54:29.085 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors - application/json 153
+2026-06-15 09:54:29.110 +05:30 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2026-06-15 09:54:29.114 +05:30 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2026-06-15 09:54:29.120 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors - 405 0 null 35.5285ms
+2026-06-15 09:54:36.721 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5281/api/v1/Vendors - application/json 153
+2026-06-15 09:54:36.730 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System)'
+2026-06-15 09:54:36.752 +05:30 [INF] Route matched with {action = "Create", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 09:54:36.901 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@__vendor_PhoneNumber_0='?' (Size = 4000), @__ToLower_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Vendors] AS [v]
+        WHERE [v].[PhoneNumber] = @__vendor_PhoneNumber_0 OR LOWER([v].[Email]) = @__ToLower_1) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-15 09:54:36.918 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'VendorManagement.DTOs.ErrorResponse'.
+2026-06-15 09:54:36.924 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System) in 166.0553ms
+2026-06-15 09:54:36.935 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Create (WareHouse Optimization System)'
+2026-06-15 09:54:36.940 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5281/api/v1/Vendors - 400 null application/json; charset=utf-8 219.172ms
+2026-06-15 09:56:49.265 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/11 - application/json 153
+2026-06-15 09:56:49.288 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 09:56:49.290 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 09:56:49.400 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 09:56:49.406 +05:30 [INF] Executing NotFoundObjectResult, writing value of type 'VendorManagement.DTOs.ErrorResponse'.
+2026-06-15 09:56:49.408 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 110.5282ms
+2026-06-15 09:56:49.411 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 09:56:49.419 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/11 - 404 null application/json; charset=utf-8 154.3206ms
+2026-06-15 10:02:10.321 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - application/json 154
+2026-06-15 10:02:10.327 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 10:02:10.328 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:02:10.356 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 10:02:10.370 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Vendors] SET [Email] = @p0, [GoodsSupplied] = @p1, [IsActive] = @p2, [Name] = @p3, [PhoneNumber] = @p4
+OUTPUT 1
+WHERE [VendorId] = @p5;
+2026-06-15 10:02:10.374 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-15 10:02:10.376 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 43.7107ms
+2026-06-15 10:02:10.380 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 10:02:10.385 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - 200 null application/json; charset=utf-8 63.3742ms
+2026-06-15 10:02:41.616 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - application/json 153
+2026-06-15 10:02:41.630 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 10:02:41.632 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:02:41.648 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 10:02:41.661 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Vendors] SET [Email] = @p0, [GoodsSupplied] = @p1, [IsActive] = @p2, [Name] = @p3, [PhoneNumber] = @p4
+OUTPUT 1
+WHERE [VendorId] = @p5;
+2026-06-15 10:02:41.666 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-15 10:02:41.669 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 33.2004ms
+2026-06-15 10:02:41.674 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 10:02:41.677 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - 200 null application/json; charset=utf-8 62.1223ms
+2026-06-15 10:05:53.108 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/api/v1/Vendors - application/json 153
+2026-06-15 10:05:53.116 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.GetAll (WareHouse Optimization System)'
+2026-06-15 10:05:53.123 +05:30 [INF] Route matched with {action = "GetAll", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:05:53.151 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+2026-06-15 10:05:53.162 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VendorManagement.Models.Vendor, WareHouse Optimization System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-15 10:05:53.166 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.GetAll (WareHouse Optimization System) in 39.4008ms
+2026-06-15 10:05:53.170 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.GetAll (WareHouse Optimization System)'
+2026-06-15 10:05:53.173 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/api/v1/Vendors - 200 null application/json; charset=utf-8 64.8911ms
+2026-06-15 10:21:27.812 +05:30 [INF] Starting web host
+2026-06-15 10:21:29.429 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-15 10:21:29.976 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-15 10:21:30.092 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-15 10:21:30.094 +05:30 [INF] Hosting environment: Development
+2026-06-15 10:21:30.095 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-15 10:21:31.357 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-15 10:21:31.908 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 570.8704ms
+2026-06-15 10:21:31.933 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-15 10:22:01.157 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/api/v1/Vendors/8 - application/json 154
+2026-06-15 10:22:01.175 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System)'
+2026-06-15 10:22:01.271 +05:30 [INF] Route matched with {action = "GetById", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:22:03.688 +05:30 [INF] Executed DbCommand (110ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 10:22:03.817 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-15 10:22:03.840 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System) in 2560.3174ms
+2026-06-15 10:22:03.845 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System)'
+2026-06-15 10:22:03.858 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/api/v1/Vendors/8 - 200 null application/json; charset=utf-8 2702.2048ms
+2026-06-15 10:22:41.697 +05:30 [INF] Starting web host
+2026-06-15 10:22:42.994 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-15 10:22:43.320 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-15 10:22:43.448 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-15 10:22:43.454 +05:30 [INF] Hosting environment: Development
+2026-06-15 10:22:43.463 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-15 10:22:44.404 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-15 10:22:44.736 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 355.2441ms
+2026-06-15 10:22:44.749 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-15 10:22:48.291 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/api/v1/Vendors/8 - application/json 154
+2026-06-15 10:22:48.311 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System)'
+2026-06-15 10:22:48.375 +05:30 [INF] Route matched with {action = "GetById", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:22:50.379 +05:30 [INF] Executed DbCommand (93ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 10:22:50.502 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-15 10:22:50.521 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System) in 2137.5423ms
+2026-06-15 10:22:50.524 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System)'
+2026-06-15 10:22:50.535 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/api/v1/Vendors/8 - 200 null application/json; charset=utf-8 2243.9893ms
+2026-06-15 10:25:00.967 +05:30 [INF] Starting web host
+2026-06-15 10:25:02.179 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-15 10:25:02.521 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-15 10:25:02.661 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-15 10:25:02.663 +05:30 [INF] Hosting environment: Development
+2026-06-15 10:25:02.665 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-15 10:25:03.575 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-15 10:25:03.893 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 343.5031ms
+2026-06-15 10:25:03.906 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-15 10:25:06.870 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/api/v1/Vendors/8 - application/json 154
+2026-06-15 10:25:06.900 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System)'
+2026-06-15 10:25:07.017 +05:30 [INF] Route matched with {action = "GetById", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:25:09.125 +05:30 [INF] Executed DbCommand (95ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 10:25:09.245 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-15 10:25:09.267 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System) in 2234.7694ms
+2026-06-15 10:25:09.270 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System)'
+2026-06-15 10:25:09.282 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/api/v1/Vendors/8 - 200 null application/json; charset=utf-8 2413.266ms
+2026-06-15 10:25:31.434 +05:30 [INF] Starting web host
+2026-06-15 10:25:32.826 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-15 10:25:33.216 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-15 10:25:33.376 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-15 10:25:33.379 +05:30 [INF] Hosting environment: Development
+2026-06-15 10:25:33.380 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-15 10:25:33.837 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-15 10:25:34.161 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 345.2194ms
+2026-06-15 10:25:34.176 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404
+2026-06-15 10:25:38.139 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/api/v1/Vendors/8 - application/json 154
+2026-06-15 10:25:38.158 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System)'
+2026-06-15 10:25:38.211 +05:30 [INF] Route matched with {action = "GetById", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:25:40.551 +05:30 [INF] Executed DbCommand (93ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 10:25:40.697 +05:30 [INF] Executing OkObjectResult, writing value of type 'VendorManagement.Models.Vendor'.
+2026-06-15 10:25:40.721 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System) in 2502.8192ms
+2026-06-15 10:25:40.725 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.GetById (WareHouse Optimization System)'
+2026-06-15 10:25:40.741 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/api/v1/Vendors/8 - 200 null application/json; charset=utf-8 2602.9152ms
+2026-06-15 10:25:54.054 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - application/json 154
+2026-06-15 10:25:54.061 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 10:25:54.078 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:25:54.171 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 10:25:54.277 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[@__vendor_VendorId_0='?' (DbType = Int32), @__vendor_PhoneNumber_1='?' (Size = 4000), @__ToLower_2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Vendors] AS [v]
+        WHERE [v].[VendorId] <> @__vendor_VendorId_0 AND ([v].[PhoneNumber] = @__vendor_PhoneNumber_1 OR LOWER([v].[Email]) = @__ToLower_2)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-15 10:25:54.287 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'VendorManagement.DTOs.ErrorResponse'.
+2026-06-15 10:25:54.291 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 207.2103ms
+2026-06-15 10:25:54.294 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 10:25:54.299 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - 400 null application/json; charset=utf-8 244.7815ms
+2026-06-15 10:28:47.133 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - application/json 154
+2026-06-15 10:28:47.144 +05:30 [INF] Executing endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 10:28:47.145 +05:30 [INF] Route matched with {action = "Update", controller = "Vendors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VendorManagement.DTOs.VendorRequest) on controller VendorManagement.Controllers.VendorsController (WareHouse Optimization System).
+2026-06-15 10:28:47.215 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[VendorId], [v].[Email], [v].[GoodsSupplied], [v].[IsActive], [v].[Name], [v].[PhoneNumber]
+FROM [Vendors] AS [v]
+WHERE [v].[VendorId] = @__p_0
+2026-06-15 10:28:47.218 +05:30 [INF] Executing NotFoundObjectResult, writing value of type 'VendorManagement.DTOs.ErrorResponse'.
+2026-06-15 10:28:47.220 +05:30 [INF] Executed action VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System) in 70.4154ms
+2026-06-15 10:28:47.222 +05:30 [INF] Executed endpoint 'VendorManagement.Controllers.VendorsController.Update (WareHouse Optimization System)'
+2026-06-15 10:28:47.223 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5281/api/v1/Vendors/8 - 404 null application/json; charset=utf-8 90.1752ms
+2026-06-15 14:30:02.877 +05:30 [INF] Starting web host
+2026-06-15 14:30:03.377 +05:30 [FTL] Application failed to start correctly check configurations
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\Program.cs:line 44
+2026-06-15 14:30:40.178 +05:30 [INF] Starting web host
+2026-06-15 14:30:40.449 +05:30 [FTL] Application failed to start correctly check configurations
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at System.Diagnostics.DiagnosticSource.Write[T](String name, T value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\Program.cs:line 44
+2026-06-15 14:32:44.489 +05:30 [INF] Starting web host
+2026-06-15 14:32:46.247 +05:30 [INF] User profile is available. Using 'C:\Users\2492268\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-15 14:32:46.841 +05:30 [INF] Now listening on: http://localhost:5281
+2026-06-15 14:32:47.187 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-15 14:32:47.190 +05:30 [INF] Hosting environment: Development
+2026-06-15 14:32:47.191 +05:30 [INF] Content root path: C:\Users\2492268\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System
+2026-06-15 14:32:47.701 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5281/ - null null
+2026-06-15 14:32:48.251 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5281/ - 404 null null 576.2438ms
+2026-06-15 14:32:48.264 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5281/, Response status code: 404

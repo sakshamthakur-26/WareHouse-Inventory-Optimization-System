@@ -15,14 +15,14 @@
             _context = context;
         }
 
-        // 1. Get All Vendors wrapped in ServiceResult
+        //  Get All Vendors wrapped in ServiceResult
         public async Task<ServiceResult<IEnumerable<Vendor>>> GetAllAsync()
         {
             var vendors = await _context.Vendors.ToListAsync();
             return ServiceResult<IEnumerable<Vendor>>.Success(vendors);
         }
 
-        // 2. Get Vendor By ID with Not Found validation
+        // Get Vendor By ID with Not Found validation
         public async Task<ServiceResult<Vendor>> GetByIdAsync(int id)
         {
             var vendor = await _context.Vendors.FindAsync(id);
@@ -41,14 +41,15 @@
                 return ServiceResult<Vendor>.Failure("Invalid email address. It must contain an '@' character.");
             }
 
-            // Validation for 10-digit phone number (phone stored as string)
+            // Validation for 10 digit phone number
             string phoneStr = vendor.PhoneNumber?.Trim() ?? string.Empty;
             if (phoneStr.Length != 10 || !phoneStr.All(char.IsDigit))
             {
                 return ServiceResult<Vendor>.Failure("Phone number must contain exactly 10 digits and only numbers.");
             }
 
-            // Ensure no duplicate vendor PhoneNumber or email exists (case-insensitive email comparison)
+                                       //  Ensure no duplicate vendor PhoneNumber or email exists 
+
             bool duplicateExists = await _context.Vendors.AnyAsync(v =>
               v.PhoneNumber == vendor.PhoneNumber ||
               v.Email.ToLower() == vendor.Email.ToLower()
@@ -64,7 +65,7 @@
             return ServiceResult<Vendor>.Success(vendor);
         }
 
-        // 4. Update Vendor details safely
+        // Update Vendor details safely
         public async Task<ServiceResult<Vendor>> UpdateAsync(Vendor vendor)
         {
             var existingVendor = await _context.Vendors.FindAsync(vendor.VendorId);
@@ -77,6 +78,17 @@
             if (string.IsNullOrWhiteSpace(vendor.Email) || !vendor.Email.Contains("@"))
             {
                 return ServiceResult<Vendor>.Failure("Invalid email address format during update.");
+            }
+
+            bool duplicateExists = await _context.Vendors.AnyAsync(v =>
+            v.VendorId != vendor.VendorId && 
+              (v.PhoneNumber == vendor.PhoneNumber ||
+              v.Email.ToLower() == vendor.Email.ToLower()
+                ));
+
+            if (duplicateExists)
+            {
+                return ServiceResult<Vendor>.Failure("A vendor with the same phoneNumber or email already exists.");
             }
 
             // Map updated details
