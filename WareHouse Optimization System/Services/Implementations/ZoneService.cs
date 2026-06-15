@@ -4,6 +4,8 @@ using WareHouse_Optimization_System.DTOs.Zone;
 using WareHouse_Optimization_System.Models;
 using ZoneEntity = WareHouse_Optimization_System.Models.Zone;
 namespace WareHouse_Optimization_System.Services.Implementations;
+
+using Microsoft.Data.SqlClient;
 using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.Services.Interfaces;
 
@@ -15,39 +17,42 @@ public class ZoneService : IZoneService
         _context = context;
     }
 
-    //                              CREATE
+    //                              CREATE USING PROCEDURE
     public async Task<ZoneResponse> CreateAsync(CreateZoneRequest request)
     {
-        if (string.IsNullOrEmpty(request.Name))
+        try
         {
-            throw new ArgumentException("Zone name cannot be null or empty.", nameof(request.Name));
-        }
+            var zones = await _context.Zones
+                .FromSqlRaw("EXEC sp_CreateZone @Name, @MaxCapacity",
+                    new SqlParameter("@Name", request.Name),
+                    new SqlParameter("@MaxCapacity", request.MaxCapacity))
+                .AsNoTracking()
+                .ToListAsync();
 
-        var present = await _context.Zones.AnyAsync(i => i.Name != null && i.Name.ToLower() == request.Name.ToLower());
-        if (present)
-        {
-            throw new InvalidOperationException("ZONE_ALREADY_EXISTS");
-        }
-        else
-        {
-            var zone = new Zone
+
+            var result = zones.Select(z => new ZoneResponse
             {
-                Name = request.Name,
-                MaxCapacity = request.MaxCapacity
-            };
+                ZoneId = z.ZoneId,
+                Name = z.Name,
+                MaxCapacity = z.MaxCapacity,
+                CurrentUsage = z.CurrentUsage
+            }).FirstOrDefault();
 
-            _context.Zones.Add(zone);
-            await _context.SaveChangesAsync();
+            return result;
 
-            return new ZoneResponse
-            {
-                ZoneId = zone.ZoneId,
-                Name = request.Name,
-                MaxCapacity = request.MaxCapacity
+        }
+        catch (SqlException ex)
+        {
+            if (ex.Number == 50001)
+                throw new ArgumentException(ex.Message);
 
-            };
+            if (ex.Number == 50002)
+                throw new InvalidOperationException("Zone already exists");
+
+            throw;
         }
     }
+
     //                       GET ALL
     public async Task<IEnumerable<ZoneResponse>> GetAllAsync()
     {
@@ -55,8 +60,8 @@ public class ZoneService : IZoneService
         {
             ZoneId = z.ZoneId,
             Name = z.Name,
-            MaxCapacity = z.MaxCapacity
-
+            MaxCapacity = z.MaxCapacity,
+            CurrentUsage = z.CurrentUsage
         }).ToListAsync();
 
         //throw new NotImplementedException();
@@ -129,7 +134,7 @@ public class ZoneService : IZoneService
         }
 
         return (found.MaxCapacity - found.CurrentUsage) >= requiredSpace;
-        //throw new NotImplementedException();
+        //throw new NotImplmentedexception()  ;
     }
 
     public async Task UpdateZoneUsageAsync(int zoneId, int spaceUsed)
@@ -148,7 +153,7 @@ public class ZoneService : IZoneService
             found.CurrentUsage += spaceUsed;
             await _context.SaveChangesAsync();
         }
-        //throw new NotImplementedException();
+        //throw new NotImpleementedException();
     }
 
     private static ZoneResponse MapToResponse(ZoneEntity z)

@@ -13,20 +13,24 @@ namespace WareHouse_Optimization_System.Services.Implementations
     public class StockService : IStockService
     {
 
-        private readonly WarehouseDbContext? _context;
+        private readonly WarehouseDbContext _context;
+        private readonly IZoneService _zoneService;
+        private readonly ITransactionService _transactionService;
+        private readonly ICategoryService _categoryService;
 
-        private readonly DemoService? _dservice = null;
-        private readonly ZoneService? _zoneService = null;
-        private readonly TransactionService? _transactionService = null;
-        private readonly ICategoryService? _categoryService = null;
-        public StockService(WarehouseDbContext _dbContext,ZoneService zoneService,TransactionService transactionService,ICategoryService categoryService)
+        public StockService(
+            WarehouseDbContext dbContext,
+            IZoneService zoneService,
+            ITransactionService transactionService,
+            ICategoryService categoryService)
         {
-            _context = _dbContext;
-            _dservice = new DemoService();
+            _context = dbContext;
             _zoneService = zoneService;
             _transactionService = transactionService;
             _categoryService = categoryService;
         }
+
+
 
 
         public async Task<ServiceResult<List<StockItem>>> GetAllStockItems()

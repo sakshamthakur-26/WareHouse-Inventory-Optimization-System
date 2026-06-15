@@ -15,6 +15,6 @@ namespace WareHouse_Optimization_System.Models
 
         /////////////////////////////////////////
 
-        public int CurrentUsage { get; set; }
+        public int CurrentUsage { get; set; } = 0;
     }
 }
