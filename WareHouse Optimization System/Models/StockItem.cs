@@ -23,5 +23,9 @@ namespace WareHouse_Optimization_System.Models
         public int ZoneId { get; set; }
 
         public int? MinimumThreshold { get; set; }
+
+        public int? VendorId { get; set; }
+        public Vendor Vendor { get; set; }
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WareHouse_Optimization_System.Db;
 
@@ -11,9 +12,11 @@ using WareHouse_Optimization_System.Db;
 namespace WareHouse_Optimization_System.Migrations
 {
     [DbContext(typeof(WarehouseDbContext))]
-    partial class WarehouseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260616175831_AddVendorToStock_ManualFix")]
+    partial class AddVendorToStock_ManualFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,12 +131,7 @@ namespace WareHouse_Optimization_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VendorId")
-                        .HasColumnType("int");
-
                     b.HasKey("TransactionId");
-
-                    b.HasIndex("VendorId");
 
                     b.ToTable("Transactions");
                 });
@@ -201,15 +199,6 @@ namespace WareHouse_Optimization_System.Migrations
                 });
 
             modelBuilder.Entity("WareHouse_Optimization_System.Models.StockItem", b =>
-                {
-                    b.HasOne("WareHouse_Optimization_System.Models.Vendor", "Vendor")
-                        .WithMany()
-                        .HasForeignKey("VendorId");
-
-                    b.Navigation("Vendor");
-                });
-
-            modelBuilder.Entity("WareHouse_Optimization_System.Models.Transaction", b =>
                 {
                     b.HasOne("WareHouse_Optimization_System.Models.Vendor", "Vendor")
                         .WithMany()

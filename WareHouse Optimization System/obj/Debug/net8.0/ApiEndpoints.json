@@ -1,5 +1,37 @@
 [
   {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WareHouse_Optimization_System.DTOs.Staffs.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WareHouse_Optimization_System.DTOs.Staffs.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WareHouse_Optimization_System.Controllers.CategoriesController",
     "Method": "Get",
     "RelativePath": "api/Categories",
@@ -366,16 +398,6 @@
   },
   {
     "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
-    "Method": "Get",
-    "RelativePath": "api/Zones",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
     "Method": "Create",
     "RelativePath": "api/Zones",
     "HttpMethod": "POST",
@@ -422,22 +444,6 @@
       {
         "Name": "request",
         "Type": "WareHouse_Optimization_System.DTOs.Zone.UpdateZoneRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
-    "Method": "Delete",
-    "RelativePath": "api/Zones/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

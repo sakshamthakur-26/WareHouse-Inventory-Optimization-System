@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using WareHouse_Optimization_System.DTOs.Zone;
 using WareHouse_Optimization_System.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ZonesController : ControllerBase
     {
     private readonly IZoneService _service;
@@ -17,12 +20,12 @@ namespace WareHouse_Optimization_System.Controllers
     }
 
 
-    [HttpGet]
-    public async Task<IActionResult> Get()
-    {
-        var zones = await _service.GetAllAsync();
-        return Ok(zones);
-    }
+    //[HttpGet]
+    //private async Task<IActionResult> Get()
+    //{
+    //    var zones = await _service.GetAllAsync();
+    //    return Ok(zones);
+    //}
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
@@ -68,20 +71,20 @@ namespace WareHouse_Optimization_System.Controllers
         return Ok();
     }
 
-        [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
-    {
-        try
-        {
-            await _service.DeleteAsync(id);
-            return NoContent();
-        }
-        catch (KeyNotFoundException)
-        {
-            return NotFound();
-        }
+    //[HttpDelete("{id}")]
+    //private async Task<IActionResult> Delete(int id)
+    //{
+    //    try
+    //    {
+    //        await _service.DeleteAsync(id);
+    //        return NoContent();
+    //    }
+    //    catch (KeyNotFoundException)
+    //    {
+    //        return NotFound();
+    //    }
+    //}
+
+
     }
-
-
-}
 }

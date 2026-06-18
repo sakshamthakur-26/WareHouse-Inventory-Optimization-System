@@ -14,6 +14,7 @@ namespace WareHouse_Optimization_System.Db
         public DbSet<Zone> Zones { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
 
     }
 }

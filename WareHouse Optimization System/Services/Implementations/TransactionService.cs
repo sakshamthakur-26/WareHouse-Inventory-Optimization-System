@@ -24,7 +24,8 @@ namespace WareHouse_Optimization_System.Services.Implementations
                     ItemId = t.ItemId,
                     Quantity = t.Quantity,
                     Type = t.Type,
-                    Timestamp = t.Timestamp
+                    Timestamp = t.Timestamp ,
+                    VendorId = t.VendorId
                 })
                 .ToListAsync();
         }
@@ -40,18 +41,30 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 ItemId = t.ItemId,
                 Quantity = t.Quantity,
                 Type = t.Type,
-                Timestamp = t.Timestamp
+                Timestamp = t.Timestamp ,
+                VendorId = t.VendorId
             };
         }
 
         public async Task<ServiceResult<TransactionLogResponse>> CreateTransactionAsync(CreateTransactionRequest request)
         {
+
+
+            var stock = await _context.StockItems
+                .FirstOrDefaultAsync(s => s.ItemId == request.ItemId);
+
+            if (stock == null)
+            {
+                return ServiceResult<TransactionLogResponse>.Failure("Stock item not found");
+            }
+
             var transaction = new Transaction
             {
                 ItemId = request.ItemId,
                 Quantity = request.Quantity,
                 Type = request.Type,
-                Timestamp = DateTime.Now
+                Timestamp = DateTime.Now,
+                 VendorId = stock.VendorId
             };
 
             _context.Transactions.Add(transaction);
@@ -68,7 +81,8 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 ItemId = transaction.ItemId,
                 Quantity = transaction.Quantity,
                 Type = transaction.Type,
-                Timestamp = transaction.Timestamp
+                Timestamp = transaction.Timestamp,
+                VendorId = transaction.VendorId
             };
             return ServiceResult<TransactionLogResponse>.Success(responseLog);
         }

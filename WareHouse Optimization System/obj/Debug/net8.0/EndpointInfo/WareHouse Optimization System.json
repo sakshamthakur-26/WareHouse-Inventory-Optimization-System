@@ -1,10 +1,72 @@
 {
-  "openapi": "3.0.4",
+  "openapi": "3.0.1",
   "info": {
     "title": "WareHouse Optimization System",
     "version": "1.0"
   },
   "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Categories": {
       "get": {
         "tags": [
@@ -12,7 +74,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -67,7 +129,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -90,7 +152,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -147,7 +209,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -168,7 +230,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -180,7 +242,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -235,7 +297,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -275,7 +337,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -337,7 +399,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -360,7 +422,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -389,7 +451,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -444,7 +506,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -484,7 +546,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
@@ -513,7 +575,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -542,7 +604,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -565,7 +627,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -605,48 +667,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Zones": {
-      "get": {
-        "tags": [
-          "Zones"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Zones"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateZoneRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateZoneRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateZoneRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -669,7 +690,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -709,28 +730,38 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
-      },
-      "delete": {
+      }
+    },
+    "/api/Zones": {
+      "post": {
         "tags": [
           "Zones"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateZoneRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateZoneRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateZoneRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -752,6 +783,14 @@
           "quantity": {
             "type": "integer",
             "format": "int32"
+          },
+          "vendorId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/Vendor"
           }
         },
         "additionalProperties": false
@@ -807,6 +846,38 @@
         },
         "additionalProperties": false
       },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "StockItem": {
         "required": [
           "categoryId",
@@ -841,6 +912,14 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "vendorId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/Vendor"
           }
         },
         "additionalProperties": false
@@ -867,6 +946,11 @@
           "timestamp": {
             "type": "string",
             "format": "date-time"
+          },
+          "vendorId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -882,6 +966,42 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vendor": {
+        "required": [
+          "email",
+          "goodsSupplied",
+          "name",
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "vendorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "goodsSupplied": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -911,23 +1031,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter Bearer token like: Bearer your_token_here",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
   },
-  "tags": [
+  "security": [
     {
-      "name": "Categories"
-    },
-    {
-      "name": "StockItems"
-    },
-    {
-      "name": "Transactions"
-    },
-    {
-      "name": "Vendors"
-    },
-    {
-      "name": "Zones"
+      "Bearer": [ ]
     }
   ]
 }

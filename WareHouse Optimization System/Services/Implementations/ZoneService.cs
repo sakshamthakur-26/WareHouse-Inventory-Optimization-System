@@ -54,7 +54,7 @@ public class ZoneService : IZoneService
     }
 
     //                       GET ALL
-    public async Task<IEnumerable<ZoneResponse>> GetAllAsync()
+    private async Task<IEnumerable<ZoneResponse>> GetAllAsync()
     {
         return await _context.Zones.Select(z => new ZoneResponse
         {
@@ -68,7 +68,7 @@ public class ZoneService : IZoneService
     }
 
     //                  DELETE
-    public async Task DeleteAsync(int id)
+    private async Task DeleteAsync(int id)
     {
         var present = await _context.Zones.FindAsync(id);
         if (present == null) throw new KeyNotFoundException();
