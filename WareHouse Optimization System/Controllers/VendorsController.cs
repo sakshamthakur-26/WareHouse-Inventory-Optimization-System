@@ -1,6 +1,7 @@
 ﻿namespace WareHouse_Optimization_System.Controllers
 {
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using WareHouse_Optimization_System.DTOs;
     using WareHouse_Optimization_System.Models;
@@ -8,6 +9,7 @@
 
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize]
     public class VendorsController : ControllerBase
     {
         private readonly IVendorService _service;

@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.DTOs.Transaction;
 using WareHouse_Optimization_System.Services.Implementations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TransactionsController : ControllerBase
     {
         private readonly TransactionService _service;

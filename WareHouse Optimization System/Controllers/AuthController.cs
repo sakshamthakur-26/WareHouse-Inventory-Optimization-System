@@ -41,7 +41,8 @@ namespace WareHouse_Optimization_System.Controllers
             _context.Staffs.Add(staff);
             await _context.SaveChangesAsync();
 
-            return Ok("Registered Successfully");
+            return Ok(new { message = "Registered Successfully" });
+
         }
 
         // LOGIN

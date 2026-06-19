@@ -5,7 +5,7 @@ namespace WareHouse_Optimization_System.Services.Interfaces
 {
     public interface IZoneService
     {
-        //Task<IEnumerable<ZoneResponse>> GetAllAsync();
+        Task<IEnumerable<ZoneResponse>> GetAllAsync();
         Task<ZoneResponse> GetByIdAsync(int id);
         Task<ZoneResponse> CreateAsync(CreateZoneRequest request);
         Task<ServiceResult<object>> UpdateAsync(int id, UpdateZoneRequest request);

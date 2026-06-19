@@ -54,7 +54,7 @@ public class ZoneService : IZoneService
     }
 
     //                       GET ALL
-    private async Task<IEnumerable<ZoneResponse>> GetAllAsync()
+    public async Task<IEnumerable<ZoneResponse>> GetAllAsync()
     {
         return await _context.Zones.Select(z => new ZoneResponse
         {
