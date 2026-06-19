@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using WareHouse_Optimization_System.DTOs.Stock;
+using WareHouse_Optimization_System.Models;
 namespace WareHouse_Optimization_System.Services
 {
     public class ServiceResult<T>
@@ -20,5 +22,7 @@ namespace WareHouse_Optimization_System.Services
             IsSuccess = false,
             ErrorMessage = errorMessage
         };
+
+      
     }
 }

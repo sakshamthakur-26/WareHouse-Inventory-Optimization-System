@@ -27,9 +27,9 @@ namespace WareHouse_Optimization_System.Controllers
         // Get Stock Items
 
         [HttpGet]
-        public async Task<ActionResult<List<StockItem>>> GetStockItems()
+        public async Task<ActionResult<List<StockItemDto>>> GetStockItems()
         {
-            ServiceResult<List<StockItem>> result = await _services.GetAllStockItems();
+            ServiceResult<List<StockItemDto>> result = await _services.GetAllStockItems();
             if (!result.IsSuccess) return BadRequest(result.ErrorMessage);
             return Ok(result.Data);
         }

@@ -21,6 +21,8 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
+  
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -116,6 +118,18 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+
+var allowedOrigins = builder.Configuration.GetSection("allowedOrigins").Get<string[]>();   
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(allowedOrigins)
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Custom request logger middleware - logs timestamp, method and path to Logs/requests.log
@@ -143,7 +157,7 @@ try
 
     app.UseRouting();
 
-    app.UseCors("policy1");
+    app.UseCors();
 
     app.UseAuthentication();
     app.UseAuthorization();

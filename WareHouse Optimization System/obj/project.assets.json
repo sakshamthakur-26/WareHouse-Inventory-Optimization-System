@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net8.0": {
       "Azure.Core/1.38.0": {
@@ -95,7 +95,8 @@
       "Microsoft.CodeAnalysis.Analyzers/3.3.3": {
         "type": "package",
         "build": {
-          "build/_._": {}
+          "build/Microsoft.CodeAnalysis.Analyzers.props": {},
+          "build/Microsoft.CodeAnalysis.Analyzers.targets": {}
         }
       },
       "Microsoft.CodeAnalysis.Common/4.5.0": {
@@ -5472,6 +5473,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
+      "Microsoft.CodeAnalysis.Analyzers >= 3.3.3",
       "Microsoft.EntityFrameworkCore >= 8.0.26",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.26",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.26",
@@ -5485,23 +5487,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\2492170\\.nuget\\packages\\": {},
+    "C:\\Users\\2492282\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
+      "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\newprooject\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
       "projectName": "WareHouse Optimization System",
-      "projectPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
-      "packagesPath": "C:\\Users\\2492170\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\obj\\",
+      "projectPath": "C:\\Users\\2492282\\source\\repos\\newprooject\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
+      "packagesPath": "C:\\Users\\2492282\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\2492282\\source\\repos\\newprooject\\WareHouse Optimization System\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\2492170\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\2492282\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5509,14 +5511,12 @@
         "net8.0"
       ],
       "sources": {
-        "C:\\CS_projects\\17_04_2026\\localNugetFolder": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -5531,16 +5531,21 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net8.0": {
-        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[8.0.0, )"
+          },
+          "Microsoft.CodeAnalysis.Analyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[3.3.3, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -5606,7 +5611,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

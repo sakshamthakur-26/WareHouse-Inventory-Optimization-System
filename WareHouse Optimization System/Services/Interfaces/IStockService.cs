@@ -9,6 +9,6 @@ namespace WareHouse_Optimization_System.Services.Interfaces
         Task<StockItem?> GetStockItemByIdAsync(int id);
         Task<ServiceResult<StockItem>> AddStockItemAsync(AddStockDto dto);
         Task<ServiceResult<bool>> RemoveStockAsync(int itemId, int quantity);
-        Task<ServiceResult<List<StockItem>>> GetAllStockItems();
+        Task<ServiceResult<List<StockItemDto>>> GetAllStockItems();
     }
 }

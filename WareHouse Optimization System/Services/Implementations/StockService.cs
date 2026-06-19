@@ -33,10 +33,26 @@ namespace WareHouse_Optimization_System.Services.Implementations
 
 
 
-        public async Task<ServiceResult<List<StockItem>>> GetAllStockItems()
+        public async Task<ServiceResult<List<StockItemDto>>> GetAllStockItems()
         {
-            var stocks =  await _context.StockItems.ToListAsync();
-            return ServiceResult<List<StockItem>>.Success(stocks);
+
+            var query = from stock in _context.StockItems
+                        join category in _context.Categories on stock.CategoryId equals category.CategoryId
+                        join zone in _context.Zones on stock.ZoneId equals zone.ZoneId
+                        join vendor in _context.Vendors on stock.VendorId equals vendor.VendorId into vendorGroup
+                        from vendor in vendorGroup.DefaultIfEmpty()
+                        select new StockItemDto
+                        {
+                            ItemId = stock.ItemId,
+                            Name = stock.Name,
+                            Category = category.Name,
+                            Quantity = stock.Quantity,
+                            Zone = zone.Name,
+                        
+                        };
+
+            var stocks =  await query.ToListAsync();
+            return ServiceResult<List<StockItemDto>>.Success(stocks);
         }
 
         public async Task<StockItem> GetStockItemByIdAsync(int id)
