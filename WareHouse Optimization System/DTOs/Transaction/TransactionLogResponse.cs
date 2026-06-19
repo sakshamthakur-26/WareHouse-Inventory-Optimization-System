@@ -6,6 +6,8 @@
         public int ItemId { get; set; }
         public int Quantity { get; set; }
         public string Type { get; set; }
+        public int? VendorId { get; set; }
+
         public DateTime Timestamp { get; set; }
 
         public int? VendorId { get; set; }

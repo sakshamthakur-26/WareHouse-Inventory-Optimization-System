@@ -12,6 +12,9 @@ using WareHouse_Optimization_System.Middlewares;
 using WareHouse_Optimization_System.Services.Implementations;
 using WareHouse_Optimization_System.Services.Interfaces;
 
+<<<<<<< HEAD
+var builder = WebApplication.CreateBuilder(args);   //creates app config and service container , prepares di
+=======
 //register serilog configuration...
 
 Log.Logger = new LoggerConfiguration()
@@ -22,6 +25,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
 
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
@@ -38,9 +42,15 @@ builder.Services.AddCors(options =>
 builder.Host.UseSerilog();
 
 // Add services to the container.
+<<<<<<< HEAD
+builder.Services.AddScoped<IZoneService,ZoneService>();
+builder.Services.AddScoped<IStockService, StockService>();
+builder.Services.AddScoped<ITransactionService,TransactionService>();
+=======
 builder.Services.AddScoped<IZoneService, ZoneService>();
 builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IVendorService, VendorService>();
 
@@ -48,6 +58,10 @@ builder.Services.AddScoped<IVendorService, VendorService>();
 builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddControllersWithViews();
+<<<<<<< HEAD
+var connectionString = builder.Configuration.GetConnectionString("WareHouse") //get connstring
+    ?? throw new InvalidOperationException("Connection string 'WareHouse' not found in configuration files.");
+=======
 builder.Services.AddRazorPages();
 
 //Finds all apis in my project
@@ -87,10 +101,14 @@ builder.Services.AddSwaggerGen(options =>
 var connectionString = builder.Configuration.GetConnectionString("WarehouseDB")
     ?? throw new InvalidOperationException("Connection string 'WarehouseDB' not found in configuration files.");
 
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
 builder.Services.AddDbContext<WarehouseDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString));  //use sqlserver
 
 
+<<<<<<< HEAD
+var app = builder.Build(); //convert configurat
+=======
 // ✅ ADD JWT Authentication Configuration
 var jwtKey = builder.Configuration["Jwt:Key"];
 
@@ -117,6 +135,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
 
 // Custom request logger middleware - logs timestamp, method and path to Logs/requests.log
 app.UseRequestLogger();
@@ -154,6 +173,19 @@ try
 
     app.Run();
 }
+<<<<<<< HEAD
+
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "api/{controller=StockItem}/{action=GetStockItems}");
+
+app.Run();
+=======
 catch (Exception ex)
 {
     Log.Fatal(ex, "Host terminated unexpectedly");
@@ -163,3 +195,4 @@ finally
 {
     Log.CloseAndFlush();
 }
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
