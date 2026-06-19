@@ -1,5 +1,37 @@
 [
   {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WareHouse_Optimization_System.DTOs.Staffs.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WareHouse_Optimization_System.DTOs.Staffs.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WareHouse_Optimization_System.Controllers.CategoriesController",
     "Method": "Get",
     "RelativePath": "api/Categories",
@@ -158,32 +190,6 @@
   },
   {
     "ContainingType": "WareHouse_Optimization_System.Controllers.StockItemsController",
-    "Method": "LowStockAlertAsync",
-    "RelativePath": "api/StockItems",
-    "HttpMethod": "",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Boolean",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "WareHouse_Optimization_System.Controllers.StockItemsController",
     "Method": "GetStockItem",
     "RelativePath": "api/StockItems/{id}",
     "HttpMethod": "GET",
@@ -199,6 +205,32 @@
     "ReturnTypes": [
       {
         "Type": "WareHouse_Optimization_System.Models.StockItem",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.StockItemsController",
+    "Method": "LowStockAlertAsync",
+    "RelativePath": "api/StockItems/{id}/lowstock",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -302,6 +334,7 @@
     ]
   },
   {
+<<<<<<< HEAD
     "ContainingType": "WareHouse_Optimization_System.Controllers.TransactionsController",
     "Method": "GetTransactionsByDateRange",
     "RelativePath": "api/Transactions/date-range",
@@ -414,10 +447,68 @@
     "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
     "Method": "Get",
     "RelativePath": "api/Zones",
+=======
+    "ContainingType": "WareHouse_Optimization_System.Controllers.VendorsController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Vendors",
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.VendorsController",
+    "Method": "Create",
+    "RelativePath": "api/v1/Vendors",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "WareHouse_Optimization_System.DTOs.VendorRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.VendorsController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/Vendors/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.VendorsController",
+    "Method": "Update",
+    "RelativePath": "api/v1/Vendors/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "req",
+        "Type": "WareHouse_Optimization_System.DTOs.VendorRequestDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -454,9 +545,9 @@
   },
   {
     "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
-    "Method": "Update",
+    "Method": "Patch",
     "RelativePath": "api/Zones/{id}",
-    "HttpMethod": "PUT",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -467,23 +558,7 @@
       },
       {
         "Name": "request",
-        "Type": "WareHouse_Optimization_System.DTOs.Zone.CreateZoneRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
-    "Method": "Delete",
-    "RelativePath": "api/Zones/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Type": "WareHouse_Optimization_System.DTOs.Zone.UpdateZoneRequest",
         "IsRequired": true
       }
     ],

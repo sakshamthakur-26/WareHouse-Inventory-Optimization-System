@@ -57,8 +57,9 @@ namespace WareHouse_Optimization_System.Controllers
 
         // PUT api/<CategoriesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+         public void Put(int id, [FromBody] string value)
         {
+
         }
 
         // DELETE api/<CategoriesController>/5

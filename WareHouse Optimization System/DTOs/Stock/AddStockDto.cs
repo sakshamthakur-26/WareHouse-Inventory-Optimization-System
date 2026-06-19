@@ -1,4 +1,6 @@
-﻿namespace WareHouse_Optimization_System.DTOs.Stock
+﻿using WareHouse_Optimization_System.Models;
+
+namespace WareHouse_Optimization_System.DTOs.Stock
 {
     public class AddStockDto
     {
@@ -6,6 +8,9 @@
         public string CategoryName { get; set; }
        
         public int Quantity { get; set; }
-        
+
+        public int? VendorId { get; set; }
+        public Vendor Vendor { get; set; }
+
     }
 }

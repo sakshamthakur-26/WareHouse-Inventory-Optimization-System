@@ -9,5 +9,8 @@
         public int? VendorId { get; set; }
 
         public DateTime Timestamp { get; set; }
+
+        public int? VendorId { get; set; }
     }
+
 }

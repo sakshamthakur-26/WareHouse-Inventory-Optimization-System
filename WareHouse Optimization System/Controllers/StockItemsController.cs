@@ -59,13 +59,12 @@ namespace WareHouse_Optimization_System.Controllers
                 return BadRequest(result.ErrorMessage);
             }
 
-
-
             return CreatedAtAction(nameof(GetStockItem), new { id = result.Data.ItemId }, result.Data);
         }
 
 
         // DELETE: api/StockItems/5
+        //////asdfghjkjhgfdsa
         [HttpPost("{id}/remove")]
         public async Task<IActionResult> RemoveStockItem(int id,[FromBody]int quantity)
         {
@@ -79,6 +78,7 @@ namespace WareHouse_Optimization_System.Controllers
            
         }
 
+        [HttpGet("{id}/lowstock")]
         public async Task<bool> LowStockAlertAsync(int id)
         {
             StockItem? stockItem = await _services.GetStockItemByIdAsync(id);

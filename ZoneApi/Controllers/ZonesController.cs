@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Zone.DTOs;
 using Zone.Services;
@@ -19,45 +20,47 @@ public class ZonesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        return Ok(await _service.GetAllAsync());
+        var result = await _service.GetAllAsync();
+
+        if (result.IsSuccess) return Ok(result);
+        return BadRequest(result);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var zone = await _service.GetByIdAsync(id);
-        if (zone == null) return NotFound();
-        return Ok(zone);
+        var result = await _service.GetByIdAsync(id);
+        if (!result.IsSuccess) return NotFound(result);
+        return Ok(result);
     }
 
     [HttpPost]
     //[Route("/Create")]
-    public async Task<IActionResult> Create(CreateZoneRequest request) //////CREATE SERVICE ABHI AND DEFINE ALL THE FUNCTIONS USED IN THE FILE
+    public async Task<IActionResult> Create(CreateZoneRequest request)
     {
-        try
-        {
-            var zone = await _service.CreateAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = zone.ZoneId }, zone);
-        }
-        catch(InvalidOperationException ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var result = await _service.CreateAsync(request);
+
+        if (!result.IsSuccess) return BadRequest(result);
+        return CreatedAtAction(nameof(GetById), new { id = result.Data.ZoneId }, result);
     }
 
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, CreateZoneRequest request)
+    public async Task<IActionResult> Update(int id, UpdateZoneRequest request)
     {
-        await _service.UpdateAsync(id, request);
-        return Ok();
+        var result = await _service.UpdateAsync(id, request);
+
+        if (!result.IsSuccess) return BadRequest(result);
+        return Ok(result);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        await _service.DeleteAsync(id);
-        return Ok();
+        var result = await _service.DeleteAsync(id);
+
+        if (!result.IsSuccess) return NotFound(result);
+        return Ok(result);
     }
 
 

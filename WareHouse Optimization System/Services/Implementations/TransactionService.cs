@@ -25,7 +25,11 @@ namespace WareHouse_Optimization_System.Services.Implementations
                     ItemId = t.ItemId,
                     Quantity = t.Quantity,
                     Type = t.Type,
+<<<<<<< HEAD
                     Timestamp = t.Timestamp,
+=======
+                    Timestamp = t.Timestamp ,
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
                     VendorId = t.VendorId
                 })
                 .ToListAsync();
@@ -48,7 +52,11 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 ItemId = t.ItemId,
                 Quantity = t.Quantity,
                 Type = t.Type,
+<<<<<<< HEAD
                 Timestamp = t.Timestamp,
+=======
+                Timestamp = t.Timestamp ,
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
                 VendorId = t.VendorId
             };
 
@@ -138,13 +146,27 @@ namespace WareHouse_Optimization_System.Services.Implementations
 
         public async Task<ServiceResult<TransactionLogResponse>> CreateTransactionAsync(CreateTransactionRequest request)
         {
+
+
+            var stock = await _context.StockItems
+                .FirstOrDefaultAsync(s => s.ItemId == request.ItemId);
+
+            if (stock == null)
+            {
+                return ServiceResult<TransactionLogResponse>.Failure("Stock item not found");
+            }
+
             var transaction = new Transaction
             {
                 ItemId = request.ItemId,
                 Quantity = request.Quantity,
                 Type = request.Type,
                 Timestamp = DateTime.Now,
+<<<<<<< HEAD
                 VendorId = request.VendorId
+=======
+                 VendorId = stock.VendorId
+>>>>>>> 10d953cc53dd83efddaf84efd8b009c04b708817
             };
 
             _context.Transactions.Add(transaction);
