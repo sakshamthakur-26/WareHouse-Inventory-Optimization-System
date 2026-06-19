@@ -16,10 +16,10 @@ namespace WareHouse_Optimization_System.Services.Implementations
         private readonly WarehouseDbContext? _context;
 
         private readonly DemoService? _dservice = null;
-        private readonly ZoneService? _zoneService = null;
-        private readonly TransactionService? _transactionService = null;
+        private readonly IZoneService? _zoneService = null;
+        private readonly ITransactionService? _transactionService = null;
         private readonly ICategoryService? _categoryService = null;
-        public StockService(WarehouseDbContext _dbContext,ZoneService zoneService,TransactionService transactionService,ICategoryService categoryService)
+        public StockService(WarehouseDbContext _dbContext,IZoneService zoneService,ITransactionService transactionService,ICategoryService categoryService)
         {
             _context = _dbContext;
             _dservice = new DemoService();
