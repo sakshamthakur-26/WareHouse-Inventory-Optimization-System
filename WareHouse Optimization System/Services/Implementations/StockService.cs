@@ -17,17 +17,20 @@ namespace WareHouse_Optimization_System.Services.Implementations
         private readonly IZoneService _zoneService;
         private readonly ITransactionService _transactionService;
         private readonly ICategoryService _categoryService;
+        private readonly IVendorService _vendorService;
 
         public StockService(
             WarehouseDbContext dbContext,
             IZoneService zoneService,
             ITransactionService transactionService,
-            ICategoryService categoryService)
+            ICategoryService categoryService,
+            IVendorService vendorService    )
         {
             _context = dbContext;
             _zoneService = zoneService;
             _transactionService = transactionService;
             _categoryService = categoryService;
+            _vendorService = vendorService;
         }
 
 
@@ -64,9 +67,23 @@ namespace WareHouse_Optimization_System.Services.Implementations
 
         public async Task<ServiceResult<StockItem>> AddStockItemAsync(AddStockDto addStockDto)
         {
-          
 
-            var vendor = await _context.Vendors.FindAsync(addStockDto.VendorId);
+
+            if(addStockDto.VendorName == "")
+            {
+                return ServiceResult<StockItem>.Failure("vendor name empty");
+
+
+            }
+
+            var vendorResponse = await _vendorService.GetVendorIdByNameAsync(addStockDto.VendorName);
+
+            int vendorId = vendorResponse.Data;
+
+
+
+
+            var vendor = await _context.Vendors.FindAsync(vendorId);
 
             if (vendor == null)
             {
@@ -109,9 +126,10 @@ namespace WareHouse_Optimization_System.Services.Implementations
 
                 if (existingStock != null)
                 {
-                    
+
+                                        
                     existingStock.Quantity += addStockDto.Quantity;
-                    existingStock.VendorId = addStockDto.VendorId;
+                    existingStock.VendorId = vendorId;
 
                     _context.StockItems.Update(existingStock);
                     stockToProcess = existingStock;
@@ -124,9 +142,9 @@ namespace WareHouse_Optimization_System.Services.Implementations
                         CategoryId = categoryResponse.Data.CategoryId,
                         Quantity = addStockDto.Quantity,
                         ZoneId = categoryResponse.Data.DedicatedZoneId,
-                        MinimumThreshold = null ,
+                        MinimumThreshold = null,
 
-                        VendorId = addStockDto.VendorId 
+                        VendorId = vendorId
                     };
                 }
 

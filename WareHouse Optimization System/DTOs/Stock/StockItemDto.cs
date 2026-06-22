@@ -8,5 +8,6 @@
         public int Quantity { get; set; }
         public string Zone { get; set; }
         public string? Status { get; set; }
+        public int? MinimumThreshold { get; set; }
     }
 }

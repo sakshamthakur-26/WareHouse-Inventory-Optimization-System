@@ -18,6 +18,31 @@ namespace WareHouse_Optimization_System.Services.Implementations
             _context = context;
         }
 
+
+        public async Task<ServiceResult<List<string>>> GetVendorsByCategory(string categoryName)
+        {
+            var VendorName = await _context.Vendors
+                                    .Where(v => v.GoodsSupplied.Contains(categoryName)) 
+                                    .Select(v => v.Name)
+                                    .ToListAsync();
+
+            return ServiceResult<List<string>>.Success(VendorName);
+        }
+
+        public async Task<ServiceResult<int>> GetVendorIdByNameAsync(string vendorName)
+        {
+           
+            var vendor = await _context.Vendors
+                .FirstOrDefaultAsync(v => v.Name.ToLower() == vendorName.ToLower());
+
+            if (vendor == null)
+            {
+                return ServiceResult<int>.Failure($"Vendor with name '{vendorName}' was not found.");
+            }
+
+            return ServiceResult<int>.Success(vendor.VendorId);
+        }
+
         // Get all vendors
         public async Task<ServiceResult<IEnumerable<Vendor>>> GetAllAsync()
         {

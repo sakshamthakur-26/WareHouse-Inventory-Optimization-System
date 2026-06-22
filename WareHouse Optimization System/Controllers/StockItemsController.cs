@@ -66,11 +66,11 @@ namespace WareHouse_Optimization_System.Controllers
         // DELETE: api/StockItems/5
         //////asdfghjkjhgfdsa
         [HttpPost("{id}/remove")]
-        public async Task<IActionResult> RemoveStockItem(int id,[FromBody]int quantity)
+        public async Task<IActionResult> RemoveStockItem(RemoveStockDto removeDto)
         {
 
            
-                ServiceResult<bool> result = await _services.RemoveStockAsync(id, quantity);
+                ServiceResult<bool> result = await _services.RemoveStockAsync(removeDto.ItemId ,removeDto.Quantity );
                 if (!result.IsSuccess) return BadRequest(result.ErrorMessage);
                 return Ok("Stock Successfully removed");
            

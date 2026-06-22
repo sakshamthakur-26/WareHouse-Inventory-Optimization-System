@@ -7,7 +7,9 @@
 
     public interface IVendorService
     {
-        Task<ServiceResult<IEnumerable<Vendor>>> GetAllAsync();
+        Task<ServiceResult<List<string>>> GetVendorsByCategory(string categoryName);
+        Task <ServiceResult<IEnumerable<Vendor>>> GetAllAsync();
+        Task<ServiceResult<int>> GetVendorIdByNameAsync(string vendorName);
         Task<ServiceResult<Vendor>> GetByIdAsync(int id);
         Task<ServiceResult<Vendor>> AddAsync(Vendor vendor);
         Task<ServiceResult<Vendor>> UpdateAsync(Vendor vendor);

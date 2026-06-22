@@ -17,16 +17,21 @@ namespace WareHouse_Optimization_System.Controllers
         {
             _services = services;
         }
+
+
+       
+
         // GET: api/<CategoriesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<List<string>>> Get()
         {
-            var categories = _services.GetAllCategoriesAsync().Result;
+            var categories = await _services.GetAllCategoriesAsync();
             if (!categories.IsSuccess)
             {
-                return new string[] { categories.ErrorMessage };
+                return BadRequest(categories.ErrorMessage);
             }
-            return (IEnumerable<string>)categories;
+
+            return Ok(categories.Data);
         }
 
         // GET api/<CategoriesController>/5

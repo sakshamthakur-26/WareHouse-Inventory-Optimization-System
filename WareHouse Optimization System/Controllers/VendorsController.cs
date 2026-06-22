@@ -4,10 +4,11 @@
     using Microsoft.AspNetCore.Mvc;
     using WareHouse_Optimization_System.DTOs;
     using WareHouse_Optimization_System.Models;
+    using WareHouse_Optimization_System.Services;
     using WareHouse_Optimization_System.Services.Interfaces;
 
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     public class VendorsController : ControllerBase
     {
         private readonly IVendorService _service;
@@ -15,6 +16,21 @@
         public VendorsController(IVendorService service)
         {
             _service = service;
+        }
+
+
+        [HttpGet("category/{categoryName}")]
+        public async Task<ActionResult<List<string>>> GetVendorsByCategory(string categoryName)
+        {
+            var res = await _service.GetVendorsByCategory(categoryName);
+
+            if(!res.IsSuccess) {
+            
+                return NotFound();
+            }
+
+            return Ok(res.Data);
+
         }
 
         // GET ---- api/v1/vendors
@@ -96,5 +112,7 @@
 
             return Ok(res.Data);
         }
+
+        //public async Task<ActionResult<ServiceResult<List<string>>>>
     }
 }
