@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WareHouse_Optimization_System.DTOs.Category;
 using WareHouse_Optimization_System.Services;
 using WareHouse_Optimization_System.Services.Interfaces;
@@ -9,6 +10,7 @@ namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
 
@@ -57,8 +59,9 @@ namespace WareHouse_Optimization_System.Controllers
 
         // PUT api/<CategoriesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+         public void Put(int id, [FromBody] string value)
         {
+
         }
 
         // DELETE api/<CategoriesController>/5

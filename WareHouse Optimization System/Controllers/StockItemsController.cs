@@ -10,10 +10,12 @@ using WareHouse_Optimization_System.Services;
 using System;
 using WareHouse_Optimization_System.Services.Implementations;
 using WareHouse_Optimization_System.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StockItemsController : ControllerBase
     {
         private readonly IStockService _services;
@@ -59,13 +61,12 @@ namespace WareHouse_Optimization_System.Controllers
                 return BadRequest(result.ErrorMessage);
             }
 
-
-
             return CreatedAtAction(nameof(GetStockItem), new { id = result.Data.ItemId }, result.Data);
         }
 
 
         // DELETE: api/StockItems/5
+        //////asdfghjkjhgfdsa
         [HttpPost("{id}/remove")]
         public async Task<IActionResult> RemoveStockItem(int id,[FromBody]int quantity)
         {
@@ -79,6 +80,7 @@ namespace WareHouse_Optimization_System.Controllers
            
         }
 
+        [HttpGet("{id}/lowstock")]
         public async Task<bool> LowStockAlertAsync(int id)
         {
             StockItem? stockItem = await _services.GetStockItemByIdAsync(id);

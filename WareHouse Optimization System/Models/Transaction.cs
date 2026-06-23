@@ -12,5 +12,10 @@ namespace WareHouse_Optimization_System.Models
         public int Quantity { get; set; }
         public string Type { get; set; }
         public DateTime Timestamp { get; set; } = DateTime.Now;
+
+
+        public int? VendorId { get; set; } 
+        public Vendor Vendor { get; set; } 
+
     }
 }

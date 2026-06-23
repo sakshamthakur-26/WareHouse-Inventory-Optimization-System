@@ -13,20 +13,24 @@ namespace WareHouse_Optimization_System.Services.Implementations
     public class StockService : IStockService
     {
 
-        private readonly WarehouseDbContext? _context;
+        private readonly WarehouseDbContext _context;
+        private readonly IZoneService _zoneService;
+        private readonly ITransactionService _transactionService;
+        private readonly ICategoryService _categoryService;
 
-        private readonly DemoService? _dservice = null;
-        private readonly ZoneService? _zoneService = null;
-        private readonly TransactionService? _transactionService = null;
-        private readonly ICategoryService? _categoryService = null;
-        public StockService(WarehouseDbContext _dbContext,ZoneService zoneService,TransactionService transactionService,ICategoryService categoryService)
+        public StockService(
+            WarehouseDbContext dbContext,
+            IZoneService zoneService,
+            ITransactionService transactionService,
+            ICategoryService categoryService)
         {
-            _context = _dbContext;
-            _dservice = new DemoService();
+            _context = dbContext;
             _zoneService = zoneService;
             _transactionService = transactionService;
             _categoryService = categoryService;
         }
+
+
 
 
         public async Task<ServiceResult<List<StockItem>>> GetAllStockItems()
@@ -46,8 +50,15 @@ namespace WareHouse_Optimization_System.Services.Implementations
         {
           
 
-               
-                if (addStockDto.Quantity <= 0)
+            var vendor = await _context.Vendors.FindAsync(addStockDto.VendorId);
+
+            if (vendor == null)
+            {
+                return ServiceResult<StockItem>.Failure("Vendor not found.");
+            }
+
+
+            if (addStockDto.Quantity <= 0)
                 {
                     return ServiceResult<StockItem>.Failure("Enter a valid quantity greater than 0.");
                 }
@@ -77,13 +88,15 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 try
                 {
                     
-                var existingStock = await _context.StockItems.FirstOrDefaultAsync(s => s.Name.ToLower() == addStockDto.ItemName && s.CategoryId == categoryResponse.Data.CategoryId && s.ZoneId == categoryResponse.Data.DedicatedZoneId);
+                var existingStock = await _context.StockItems.FirstOrDefaultAsync(s => s.Name.ToLower() == addStockDto.ItemName.ToLower() && s.CategoryId == categoryResponse.Data.CategoryId && s.ZoneId == categoryResponse.Data.DedicatedZoneId);
                 StockItem stockToProcess;
 
                 if (existingStock != null)
                 {
                     
                     existingStock.Quantity += addStockDto.Quantity;
+                    existingStock.VendorId = addStockDto.VendorId;
+
                     _context.StockItems.Update(existingStock);
                     stockToProcess = existingStock;
                 }else
@@ -95,7 +108,9 @@ namespace WareHouse_Optimization_System.Services.Implementations
                         CategoryId = categoryResponse.Data.CategoryId,
                         Quantity = addStockDto.Quantity,
                         ZoneId = categoryResponse.Data.DedicatedZoneId,
-                        MinimumThreshold = null
+                        MinimumThreshold = null ,
+
+                        VendorId = addStockDto.VendorId 
                     };
                 }
 
@@ -106,7 +121,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                     {
 
                         ItemId = stockToProcess.ItemId,
-                        Quantity = stockToProcess.Quantity,
+                        Quantity = addStockDto.Quantity,
                         Type = "Inbound"
                     };
                     var TransactionResponse = await _transactionService.CreateTransactionAsync(TransactionRequest);

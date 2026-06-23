@@ -43,6 +43,35 @@ namespace WareHouse_Optimization_System.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("WareHouse_Optimization_System.Models.Staff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Staffs");
+                });
+
             modelBuilder.Entity("WareHouse_Optimization_System.Models.StockItem", b =>
                 {
                     b.Property<int>("ItemId")
@@ -65,10 +94,15 @@ namespace WareHouse_Optimization_System.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("VendorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ZoneId")
                         .HasColumnType("int");
 
                     b.HasKey("ItemId");
+
+                    b.HasIndex("VendorId");
 
                     b.ToTable("StockItems");
                 });
@@ -94,9 +128,53 @@ namespace WareHouse_Optimization_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("VendorId")
+                        .HasColumnType("int");
+
                     b.HasKey("TransactionId");
 
+                    b.HasIndex("VendorId");
+
                     b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("WareHouse_Optimization_System.Models.Vendor", b =>
+                {
+                    b.Property<int>("VendorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendorId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("GoodsSupplied")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("VendorId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique();
+
+                    b.ToTable("Vendors");
                 });
 
             modelBuilder.Entity("WareHouse_Optimization_System.Models.Zone", b =>
@@ -120,6 +198,24 @@ namespace WareHouse_Optimization_System.Migrations
                     b.HasKey("ZoneId");
 
                     b.ToTable("Zones");
+                });
+
+            modelBuilder.Entity("WareHouse_Optimization_System.Models.StockItem", b =>
+                {
+                    b.HasOne("WareHouse_Optimization_System.Models.Vendor", "Vendor")
+                        .WithMany()
+                        .HasForeignKey("VendorId");
+
+                    b.Navigation("Vendor");
+                });
+
+            modelBuilder.Entity("WareHouse_Optimization_System.Models.Transaction", b =>
+                {
+                    b.HasOne("WareHouse_Optimization_System.Models.Vendor", "Vendor")
+                        .WithMany()
+                        .HasForeignKey("VendorId");
+
+                    b.Navigation("Vendor");
                 });
 #pragma warning restore 612, 618
         }

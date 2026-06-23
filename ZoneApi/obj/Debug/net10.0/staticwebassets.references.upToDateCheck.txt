@@ -1,0 +1,2 @@
+C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\obj\Debug\net8.0\staticwebassets.build.json

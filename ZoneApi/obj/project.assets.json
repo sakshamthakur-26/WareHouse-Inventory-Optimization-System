@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net10.0": {
       "Azure.Core/1.38.0": {
@@ -987,6 +987,23 @@
             "rid": "win"
           }
         }
+      },
+      "WareHouse Optimization System/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.26",
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.26"
+        },
+        "compile": {
+          "bin/placeholder/WareHouse Optimization System.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WareHouse Optimization System.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -2397,6 +2414,11 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "WareHouse Optimization System/1.0.0": {
+      "type": "project",
+      "path": "../WareHouse Optimization System/WareHouse Optimization System.csproj",
+      "msbuildProject": "../WareHouse Optimization System/WareHouse Optimization System.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2405,27 +2427,28 @@
       "Microsoft.EntityFrameworkCore.Design >= 8.0.26",
       "Microsoft.EntityFrameworkCore.Proxies >= 8.0.26",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.26",
-      "Microsoft.EntityFrameworkCore.Tools >= 8.0.26"
+      "Microsoft.EntityFrameworkCore.Tools >= 8.0.26",
+      "WareHouse Optimization System >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\2492282\\.nuget\\packages\\": {},
+    "C:\\Users\\2492170\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\ZoneApi\\Zone.csproj",
+      "projectUniqueName": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\ZoneApi\\Zone.csproj",
       "projectName": "Zone",
-      "projectPath": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\ZoneApi\\Zone.csproj",
-      "packagesPath": "C:\\Users\\2492282\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2492282\\source\\repos\\WareHouse Inventory System\\ZoneApi\\obj\\",
+      "projectPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\ZoneApi\\Zone.csproj",
+      "packagesPath": "C:\\Users\\2492170\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\ZoneApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\2492282\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\2492170\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2433,6 +2456,7 @@
         "net10.0"
       ],
       "sources": {
+        "C:\\CS_projects\\17_04_2026\\localNugetFolder": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
@@ -2441,7 +2465,11 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj": {
+              "projectPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -2454,7 +2482,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net10.0": {
@@ -2505,7 +2533,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
