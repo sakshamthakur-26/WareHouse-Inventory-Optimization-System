@@ -14,6 +14,6 @@ namespace WareHouse_Optimization_System.Services.Interfaces
         // Capacity based methods kept internally in implementation (not part of public contract)
 
         Task<bool> CheckAvailableCapacityAsync(int zoneId, int requiredSpace);
-        Task UpdateZoneUsageAsync(int zoneId, int spaceUsed);
+        Task<ServiceResult<bool>> UpdateZoneUsageAsync(int zoneId, int spaceUsed);
     }
 }

@@ -65,8 +65,8 @@ namespace WareHouse_Optimization_System.Controllers
 
         // DELETE: api/StockItems/5
         //////asdfghjkjhgfdsa
-        [HttpPost("{id}/remove")]
-        public async Task<IActionResult> RemoveStockItem(RemoveStockDto removeDto)
+        [HttpPatch("dispatch")]
+        public async Task<IActionResult> DisptachStockItem(RemoveStockDto removeDto)
         {
 
            

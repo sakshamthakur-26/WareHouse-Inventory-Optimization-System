@@ -5,6 +5,7 @@ using WareHouse_Optimization_System.Controllers;
 using WareHouse_Optimization_System.Db;
 using WareHouse_Optimization_System.DTOs.Stock;
 using WareHouse_Optimization_System.DTOs.Transaction;
+using WareHouse_Optimization_System.DTOs.Zone;
 using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.Services.Interfaces;
 
@@ -202,7 +203,12 @@ namespace WareHouse_Optimization_System.Services.Implementations
             try
             {
                 await _context.SaveChangesAsync();
-                await _zoneService.UpdateZoneUsageAsync(StockItem.ZoneId, -Quantity);
+                var zoneResponse = await _zoneService.UpdateZoneUsageAsync(StockItem.ZoneId, -Quantity);
+                if (!zoneResponse.IsSuccess)
+                {
+                    await transaction.RollbackAsync(); 
+                    return ServiceResult<bool>.Failure("Failed to free up zone capacity.");
+                }
                 var transactionRequest = new CreateTransactionRequest
                 {
                     ItemId = StockItem.ItemId,

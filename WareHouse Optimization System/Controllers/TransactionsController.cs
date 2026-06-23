@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WareHouse_Optimization_System.Models;
 using WareHouse_Optimization_System.DTOs.Transaction;
 using WareHouse_Optimization_System.Services.Implementations;
+using WareHouse_Optimization_System.Services.Interfaces;
 
 namespace WareHouse_Optimization_System.Controllers
 {
@@ -15,9 +16,9 @@ namespace WareHouse_Optimization_System.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
-        private readonly TransactionService _service;
+        private readonly ITransactionService _service;
 
-        public TransactionsController(TransactionService service)
+        public TransactionsController(ITransactionService service)
         {
             _service = service; 
         }

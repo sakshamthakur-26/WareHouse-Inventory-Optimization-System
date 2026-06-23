@@ -137,7 +137,7 @@ public class ZoneService : IZoneService
         //throw new NotImplmentedexception()  ;
     }
 
-    public async Task UpdateZoneUsageAsync(int zoneId, int spaceUsed)
+    public async Task<ServiceResult<bool>> UpdateZoneUsageAsync(int zoneId, int spaceUsed)
     {
         var found = await _context.Zones.FindAsync(zoneId);
         if (found == null)
@@ -152,6 +152,8 @@ public class ZoneService : IZoneService
         {
             found.CurrentUsage += spaceUsed;
             await _context.SaveChangesAsync();
+
+            return ServiceResult<bool>.Success(true);
         }
         //throw new NotImpleementedException();
     }

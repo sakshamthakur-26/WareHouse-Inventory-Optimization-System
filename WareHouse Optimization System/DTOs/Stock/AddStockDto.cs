@@ -10,7 +10,7 @@ namespace WareHouse_Optimization_System.DTOs.Stock
         public int Quantity { get; set; }
 
         public string VendorName { get; set; }
-        //public Vendor Vendor { get; set; }/
+      
 
     }
 }

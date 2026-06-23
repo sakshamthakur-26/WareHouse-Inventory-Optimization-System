@@ -9,7 +9,7 @@ namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ZonesController : ControllerBase
     {
     private readonly IZoneService _service;
@@ -20,14 +20,14 @@ namespace WareHouse_Optimization_System.Controllers
     }
 
 
-    //[HttpGet]
-    //private async Task<IActionResult> Get()
-    //{
-    //    var zones = await _service.GetAllAsync();
-    //    return Ok(zones);
-    //}
+        //[HttpGet]
+        //private async Task<IActionResult> Get()
+        //{
+        //    var zones = await _service.GetAllAsync();
+        //    return Ok(zones);
+        //}
 
-    [HttpGet("{id}")]
+        [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
         try
