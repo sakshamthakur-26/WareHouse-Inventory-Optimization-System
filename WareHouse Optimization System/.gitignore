@@ -1,1 +1,45 @@
-﻿
+﻿# Visual Studio / .NET.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+# Build outputs[Bb]in/[Oo]bj/
+out/
+artifacts/
+*.exe
+*.dll
+*.pdb
+*.app
+*.log
+# NuGet*.nupkg
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+# Publishpublish/
+*.publishsettings
+# ASP.NET Core / Razor Pageswwwroot/uploads/
+appsettings.*.Development.json
+secrets.json
+# Database files*.mdf
+*.ldf
+*.db
+*.sqlite
+*.sqlite3
+# Test results / coverageTestResults/
+coverage/
+*.coverage
+*.coveragexml
+*.trx
+# IDEs and editors.vscode/
+.idea/
+*.sln.DotSettings.user
+# OS files.DS_Store
+Thumbs.db
+# Node / frontendnode_modules/
+dist/
+build/
+# Containers / Dockerdocker-compose.override.yml
+# Logs*.log
+logs/
+ git 

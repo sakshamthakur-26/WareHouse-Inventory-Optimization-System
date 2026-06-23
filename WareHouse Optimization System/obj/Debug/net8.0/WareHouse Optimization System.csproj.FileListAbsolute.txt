@@ -2,10 +2,6 @@ C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse 
 C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\testhost.exe
 C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\appsettings.json
-C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\bin_old\Debug\net8.0\appsettings.Development.json
-C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\bin_old\Debug\net8.0\appsettings.json
-C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\bin_old\Debug\net8.0\WareHouse Optimization System.staticwebassets.endpoints.json
-C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\bin_old\Debug\net8.0\WareHouse Optimization System.staticwebassets.runtime.json
 C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\WareHouse Optimization System.staticwebassets.runtime.json
 C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\WareHouse Optimization System.staticwebassets.endpoints.json
 C:\Users\2492170\source\repos\WareHouse-Inventory-Optimization-System\WareHouse Optimization System\bin\Debug\net8.0\WareHouse Optimization System.exe

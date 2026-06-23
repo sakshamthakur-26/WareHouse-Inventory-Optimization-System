@@ -398,6 +398,16 @@
   },
   {
     "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
+    "Method": "Get",
+    "RelativePath": "api/Zones",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WareHouse_Optimization_System.Controllers.ZonesController",
     "Method": "Create",
     "RelativePath": "api/Zones",
     "HttpMethod": "POST",
