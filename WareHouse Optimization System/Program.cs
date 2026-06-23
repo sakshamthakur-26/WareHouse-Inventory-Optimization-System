@@ -1,5 +1,5 @@
 using System.Text;
-// ADD for JWT Authentication
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -12,16 +12,13 @@ using WareHouse_Optimization_System.Middlewares;
 using WareHouse_Optimization_System.Services.Implementations;
 using WareHouse_Optimization_System.Services.Interfaces;
 
-//register serilog configuration...
-
+//register serilog configuration
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .Enrich.FromLogContext()
     .WriteTo.Console()
     .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
-
-  
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +33,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Use Serilog as the logging provider...
+// Use Serilog as the logging provider
 builder.Host.UseSerilog();
 
 // Add services to the container.
@@ -45,7 +42,6 @@ builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IVendorService, VendorService>();
-
 //  ADD JwtService registration
 builder.Services.AddScoped<JwtService>();
 
@@ -88,14 +84,11 @@ builder.Services.AddSwaggerGen(options =>
 
 var connectionString = builder.Configuration.GetConnectionString("WarehouseDB")
     ?? throw new InvalidOperationException("Connection string 'WarehouseDB' not found in configuration files.");
-
 builder.Services.AddDbContext<WarehouseDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-
 // ✅ ADD JWT Authentication Configuration
 var jwtKey = builder.Configuration["Jwt:Key"];
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -118,8 +111,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-
-var allowedOrigins = builder.Configuration.GetSection("allowedOrigins").Get<string[]>();   
+var allowedOrigins = builder.Configuration.GetSection("allowedOrigins").Get<string[]>();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>

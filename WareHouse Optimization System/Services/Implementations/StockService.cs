@@ -1,4 +1,4 @@
-﻿using Azure.Core;
+﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using WareHouse_Optimization_System.Controllers;
@@ -20,14 +20,16 @@ namespace WareHouse_Optimization_System.Services.Implementations
         private readonly ICategoryService _categoryService;
         private readonly IVendorService _vendorService;
 
-        public StockService(
-            WarehouseDbContext dbContext,
-            IZoneService zoneService,
-            ITransactionService transactionService,
-            ICategoryService categoryService,
-            IVendorService vendorService    )
+
+
+
+
+    
+    
+        public StockService(WarehouseDbContext _dbContext, IZoneService zoneService,ITransactionService transactionService,ICategoryService categoryService,IVendorService vendorService)
         {
-            _context = dbContext;
+            _context = _dbContext;
+
             _zoneService = zoneService;
             _transactionService = transactionService;
             _categoryService = categoryService;
@@ -152,13 +154,14 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 _context.StockItems.Update(stockToProcess);
                     await _context.SaveChangesAsync();
                      await _zoneService.UpdateZoneUsageAsync(categoryResponse.Data.DedicatedZoneId, addStockDto.Quantity);
-                    var TransactionRequest = new CreateTransactionRequest
-                    {
+                var TransactionRequest = new CreateTransactionRequest
+                {
 
-                        ItemId = stockToProcess.ItemId,
-                        Quantity = addStockDto.Quantity,
-                        Type = "Inbound"
-                    };
+                    ItemId = stockToProcess.ItemId,
+                    Quantity = addStockDto.Quantity,
+                    Type = "Inbound",
+                    VendorId = vendorId
+                };
                     var TransactionResponse = await _transactionService.CreateTransactionAsync(TransactionRequest);
                     if (!TransactionResponse.IsSuccess)
                     {
@@ -223,7 +226,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 }
                 if (StockItem.MinimumThreshold.HasValue && StockItem.Quantity <= StockItem.MinimumThreshold.Value)
                 {
-                    // You can call your AlertService here
+                    
                     // await _alertService.TriggerLowStockAlertAsync(stockItem.ItemId);
                 }
                 await transaction.CommitAsync();

@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Stock Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ce65cf866c16c1d10c97412b15c23306c731ce7")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00fb3bbda465ca3837db8295a402215b4ad8da79")]
+>>>>>>> 38d03c7 (program file updated)
 [assembly: System.Reflection.AssemblyProductAttribute("Stock Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Stock Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

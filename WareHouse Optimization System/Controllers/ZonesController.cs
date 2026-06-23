@@ -1,8 +1,14 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using WareHouse_Optimization_System.DTOs.Zone;
+
 using WareHouse_Optimization_System.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+
+
+using WareHouse_Optimization_System.Models;
+using WareHouse_Optimization_System.Services.Implementations;
+using WareHouse_Optimization_System.DTOs.Zone;
+
 
 
 namespace WareHouse_Optimization_System.Controllers
@@ -12,7 +18,9 @@ namespace WareHouse_Optimization_System.Controllers
     //[Authorize]
     public class ZonesController : ControllerBase
     {
+
     private readonly IZoneService _service;
+
 
     public ZonesController(IZoneService service)
     {
@@ -20,12 +28,12 @@ namespace WareHouse_Optimization_System.Controllers
     }
 
 
-        //[HttpGet]
-        //private async Task<IActionResult> Get()
-        //{
-        //    var zones = await _service.GetAllAsync();
-        //    return Ok(zones);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var zones = await _service.GetAllAsync();
+            return Ok(zones);
+        }
 
         [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)

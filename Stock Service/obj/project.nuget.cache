@@ -1,12 +1,18 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "tfZw+hoVws8=",
 =======
   "dgSpecHash": "uwqAxVUOHwg=",
 >>>>>>> origin/Transaction
   "success": true,
   "projectFilePath": "C:\\Users\\2492266\\source\\repos\\WareHouse-Inventory-Optimization-System\\Stock Service\\Stock Service.csproj",
+=======
+  "dgSpecHash": "k1C8XX6XY0I=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\2492282\\source\\repos\\newprooject\\Stock Service\\Stock Service.csproj",
+>>>>>>> 38d03c7 (program file updated)
   "expectedPackageFiles": [
     "C:\\Users\\2492266\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\2492266\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

@@ -3,7 +3,7 @@ using WareHouse_Optimization_System.DTOs.Category;
 using WareHouse_Optimization_System.Services;
 using WareHouse_Optimization_System.Services.Interfaces;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace WareHouse_Optimization_System.Controllers
 {
@@ -19,9 +19,6 @@ namespace WareHouse_Optimization_System.Controllers
         }
 
 
-       
-
-        // GET: api/<CategoriesController>
         [HttpGet]
         public async Task<ActionResult<List<string>>> Get()
         {
@@ -34,14 +31,14 @@ namespace WareHouse_Optimization_System.Controllers
             return Ok(categories.Data);
         }
 
-        // GET api/<CategoriesController>/5
+
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<CategoriesController>
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateCategoryDto categorydto)
         {

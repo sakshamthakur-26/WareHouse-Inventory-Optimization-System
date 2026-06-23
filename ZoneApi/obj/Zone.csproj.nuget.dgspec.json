@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\ZoneApi\\Zone.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj",
         "packagesPath": "C:\\Users\\2492170\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\obj\\",
+=======
+    "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\Zone.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\Zone.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\Zone.csproj",
+        "projectName": "Zone",
+        "projectPath": "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\Zone.csproj",
+        "packagesPath": "C:\\Users\\2492282\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\obj\\",
+>>>>>>> 38d03c7 (program file updated)
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

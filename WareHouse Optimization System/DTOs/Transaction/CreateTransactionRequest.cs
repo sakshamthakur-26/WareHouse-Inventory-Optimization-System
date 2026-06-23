@@ -5,5 +5,7 @@
         public int ItemId { get; set; }
         public int Quantity { get; set; }
         public string Type { get; set; } // Inbound / Outbound
+
+        public int? VendorId { get; set; } 
     }
 }

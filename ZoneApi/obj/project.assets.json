@@ -2438,11 +2438,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\ZoneApi\\Zone.csproj",
       "projectName": "Zone",
       "projectPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\ZoneApi\\Zone.csproj",
       "packagesPath": "C:\\Users\\2492170\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\ZoneApi\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\Zone.csproj",
+      "projectName": "Zone",
+      "projectPath": "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\Zone.csproj",
+      "packagesPath": "C:\\Users\\2492282\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\obj\\",
+>>>>>>> 38d03c7 (program file updated)
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2463,7 +2471,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
             "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\WareHouse Optimization System\\WareHouse Optimization System.csproj": {
@@ -2486,7 +2493,6 @@
     },
     "frameworks": {
       "net10.0": {
-        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {

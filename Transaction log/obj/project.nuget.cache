@@ -1,12 +1,18 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "3SYINZGXdJk=",
 =======
   "dgSpecHash": "6+DL+NIgPyA=",
 >>>>>>> origin/Transaction
   "success": true,
   "projectFilePath": "C:\\Users\\2492266\\source\\repos\\WareHouse-Inventory-Optimization-System\\Transaction log\\TransactionServices.csproj",
+=======
+  "dgSpecHash": "z2RA/U1UQBg=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\2492282\\source\\repos\\newprooject\\Transaction log\\TransactionServices.csproj",
+>>>>>>> 38d03c7 (program file updated)
   "expectedPackageFiles": [
     "C:\\Users\\2492266\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\2492266\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

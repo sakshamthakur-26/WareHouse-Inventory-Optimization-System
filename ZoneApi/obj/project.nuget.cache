@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "lA6ZA67zRA0=",
   "success": true,
   "projectFilePath": "C:\\Users\\2492170\\source\\repos\\WareHouse-Inventory-Optimization-System\\ZoneApi\\Zone.csproj",
+=======
+  "dgSpecHash": "Eex9m+89rXo=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\2492282\\source\\repos\\newprooject\\ZoneApi\\Zone.csproj",
+>>>>>>> 38d03c7 (program file updated)
   "expectedPackageFiles": [
     "C:\\Users\\2492170\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\2492170\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
