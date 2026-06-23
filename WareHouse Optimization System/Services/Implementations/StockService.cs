@@ -47,6 +47,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                         join zone in _context.Zones on stock.ZoneId equals zone.ZoneId
                         join vendor in _context.Vendors on stock.VendorId equals vendor.VendorId into vendorGroup
                         from vendor in vendorGroup.DefaultIfEmpty()
+
                         select new StockItemDto
                         {
                             ItemId = stock.ItemId,
@@ -54,7 +55,10 @@ namespace WareHouse_Optimization_System.Services.Implementations
                             Category = category.Name,
                             Quantity = stock.Quantity,
                             Zone = zone.Name,
-                        
+                            Status = stock.Quantity == 0 ? "Out of Stock" :
+                             (stock.MinimumThreshold.HasValue && stock.Quantity <= stock.MinimumThreshold.Value) ? "Low Stock" :
+                             "In Stock"
+
                         };
 
             var stocks =  await query.ToListAsync();
@@ -133,6 +137,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                                         
                     existingStock.Quantity += addStockDto.Quantity;
                     existingStock.VendorId = vendorId;
+                    existingStock.MinimumThreshold = addStockDto.threshold;
 
                     _context.StockItems.Update(existingStock);
                     stockToProcess = existingStock;
@@ -145,7 +150,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                         CategoryId = categoryResponse.Data.CategoryId,
                         Quantity = addStockDto.Quantity,
                         ZoneId = categoryResponse.Data.DedicatedZoneId,
-                        MinimumThreshold = null,
+                        MinimumThreshold = addStockDto.threshold,
 
                         VendorId = vendorId
                     };
@@ -227,7 +232,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
                 if (StockItem.MinimumThreshold.HasValue && StockItem.Quantity <= StockItem.MinimumThreshold.Value)
                 {
                     
-                    // await _alertService.TriggerLowStockAlertAsync(stockItem.ItemId);
+                     //await _alertService.TriggerLowStockAlertAsync(stockItem.ItemId);
                 }
                 await transaction.CommitAsync();
                 return ServiceResult<bool>.Success(true);

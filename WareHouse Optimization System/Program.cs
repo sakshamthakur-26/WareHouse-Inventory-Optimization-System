@@ -23,15 +23,7 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("policy1", policy =>
-    {
-        policy.AllowAnyHeader();
-        policy.AllowAnyMethod();
-        policy.AllowAnyOrigin();
-    });
-});
+
 
 // Use Serilog as the logging provider
 builder.Host.UseSerilog();
@@ -42,6 +34,7 @@ builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IVendorService, VendorService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 //  ADD JwtService registration
 builder.Services.AddScoped<JwtService>();
 
