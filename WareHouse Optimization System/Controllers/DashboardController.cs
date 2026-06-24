@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WareHouse_Optimization_System.DTOs.Dasboard;
 using WareHouse_Optimization_System.Services;
 using WareHouse_Optimization_System.Services.Interfaces;
@@ -8,6 +9,7 @@ namespace WareHouse_Optimization_System.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DashboardController : ControllerBase
     {
 

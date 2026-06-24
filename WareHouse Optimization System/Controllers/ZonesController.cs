@@ -15,7 +15,7 @@ namespace WareHouse_Optimization_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ZonesController : ControllerBase
     {
 

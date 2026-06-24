@@ -7,7 +7,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
 {
     public class DashboardService : IDashboardService
     {
-        private readonly WarehouseDbContext _context; // Adjust to your actual DbContext name
+        private readonly WarehouseDbContext _context; 
 
         public DashboardService(WarehouseDbContext context)
         {
