@@ -18,26 +18,29 @@ namespace WareHouse_Optimization_System.Services.Implementations
         {
             try
             {
-                // Execute all queries asynchronously
                 var totalZones = await _context.Zones.CountAsync();
                 var totalVendors = await _context.Vendors.CountAsync();
                 var totalStockItems = await _context.StockItems.CountAsync();
 
-                // Count items where stock is at or below the threshold
                 var totalLowStockAlerts = await _context.StockItems
                     .Where(item => item.Quantity <= item.MinimumThreshold)
                     .CountAsync();
 
+                // REPLACED: now includes ItemId, CategoryName, VendorName
                 var lowStockItemsList = await _context.StockItems
                     .Where(item => item.Quantity <= item.MinimumThreshold)
-                    .Select(item => new LowStockItemDto
+                    .Join(_context.Categories, s => s.CategoryId, c => c.CategoryId, (s, c) => new { s, c })
+                    .GroupJoin(_context.Vendors, sc => sc.s.VendorId, v => v.VendorId, (sc, vendors) => new { sc.s, sc.c, vendors })
+                    .SelectMany(x => x.vendors.DefaultIfEmpty(), (x, v) => new LowStockItemDto
                     {
-                        ItemName = item.Name,
-                        Quantity = item.Quantity
+                        ItemId = x.s.ItemId,
+                        ItemName = x.s.Name,
+                        Quantity = x.s.Quantity,
+                        CategoryName = x.c.Name,
+                        VendorName = v != null ? v.Name : null
                     })
                     .ToListAsync();
 
-                // Map to DTO
                 var summaryDto = new DashboardDto
                 {
                     TotalZones = totalZones,
@@ -51,12 +54,11 @@ namespace WareHouse_Optimization_System.Services.Implementations
             }
             catch (Exception ex)
             {
-                // If the database is down or a query fails, return a safe failure result
                 return ServiceResult<DashboardDto>.Failure($"Failed to load dashboard metrics: {ex.Message}");
             }
         }
 
-       
-        
+
+
     }
 }

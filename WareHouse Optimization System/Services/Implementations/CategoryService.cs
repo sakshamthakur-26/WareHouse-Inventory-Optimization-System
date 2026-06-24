@@ -26,6 +26,8 @@ namespace WareHouse_Optimization_System.Services.Implementations
             }
             return ServiceResult<List<string>>.Success(categoriesName);
         }
+
+      
         public async Task<ServiceResult<CategoryResponseDto>> GetZoneForCategoryAsync(string categoryName)
         {
            
@@ -46,35 +48,83 @@ namespace WareHouse_Optimization_System.Services.Implementations
             return  ServiceResult<CategoryResponseDto>.Success(responseDto) ;
         }
 
-        public async Task<ServiceResult<Category>> CreateCategoryAsync(CreateCategoryDto request)
-        {
+        //public async Task<ServiceResult<Category>> CreateCategoryAsync(CreateCategoryDto request)
+        //{
           
-            var zoneExists = await _context.Zones.AnyAsync(z => z.ZoneId == request.DedicatedZoneId);
-            if (!zoneExists)
-            {
-                return ServiceResult<Category>.Failure($"Cannot create category. Zone ID {request.DedicatedZoneId} does not exist in the warehouse.");
-            }
+        //    var zoneExists = await _context.Zones.AnyAsync(z => z.ZoneId == request.DedicatedZoneId);
+        //    if (!zoneExists)
+        //    {
+        //        return ServiceResult<Category>.Failure($"Cannot create category. Zone ID {request.DedicatedZoneId} does not exist in the warehouse.");
+        //    }
 
            
-            var existingCategory = await _context.Categories
-                .FirstOrDefaultAsync(c => c.Name.ToLower() == request.Name.ToLower());
+        //    var existingCategory = await _context.Categories
+        //        .FirstOrDefaultAsync(c => c.Name.ToLower() == request.Name.ToLower());
 
-            if (existingCategory != null)
-            {
-                return ServiceResult<Category>.Failure("This Category already exists.");
-            }
+        //    if (existingCategory != null)
+        //    {
+        //        return ServiceResult<Category>.Failure("This Category already exists.");
+        //    }
 
             
-            var newCategory = new Category
+        //    var newCategory = new Category
+        //    {
+        //        Name = request.Name,
+        //        DedicatedZoneId = request.DedicatedZoneId
+        //    };
+
+        //    await _context.Categories.AddAsync(newCategory);
+        //    await _context.SaveChangesAsync();
+
+        //    return ServiceResult<Category>.Success(newCategory);
+        //}
+
+
+        public async Task<ServiceResult<Category>> CreateCategoryAsync(CreateCategoryDto request)
+        {
+            var name = request.Name.Trim();
+
+            var zoneExists = await _context.Zones.AnyAsync(z => z.ZoneId == request.DedicatedZoneId);
+            if (!zoneExists)
+                return ServiceResult<Category>.Failure($"Zone ID {request.DedicatedZoneId} does not exist.");
+
+            var nameTaken = await _context.Categories
+                .AnyAsync(c => c.Name.ToLower() == name.ToLower());
+            if (nameTaken)
+                return ServiceResult<Category>.Failure("This category already exists. Use assign instead.");
+
+            var category = new Category
             {
-                Name = request.Name,
+                Name = name,
                 DedicatedZoneId = request.DedicatedZoneId
             };
 
-            await _context.Categories.AddAsync(newCategory);
+            await _context.Categories.AddAsync(category);
             await _context.SaveChangesAsync();
 
-            return ServiceResult<Category>.Success(newCategory);
+            return ServiceResult<Category>.Success(category);
+        }
+
+        public async Task<ServiceResult<Category>> AssignCategoryToZoneAsync(AssignCategoryDto request)
+        {
+            var zoneExists = await _context.Zones.AnyAsync(z => z.ZoneId == request.ZoneId);
+            if (!zoneExists)
+                return ServiceResult<Category>.Failure($"Zone ID {request.ZoneId} does not exist.");
+
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(c => c.Name.ToLower() == request.CategoryName.Trim().ToLower());
+
+            if (category == null)
+                return ServiceResult<Category>.Failure("Category does not exist.");
+
+            if (category.DedicatedZoneId == request.ZoneId)
+                return ServiceResult<Category>.Failure("This category is already assigned to this zone.");
+
+            category.DedicatedZoneId = request.ZoneId;
+            _context.Categories.Update(category);
+            await _context.SaveChangesAsync();
+
+            return ServiceResult<Category>.Success(category);
         }
     }
 }

@@ -39,35 +39,39 @@ namespace WareHouse_Optimization_System.Controllers
         }
 
 
+        //[HttpPost]
+        //public async Task<IActionResult> Post([FromBody] CreateCategoryDto categorydto)
+        //{
+        //    if (categorydto == null)
+        //    {
+        //        return BadRequest("Category data is required.");
+        //    }
+
+        //    var result = await _services.CreateCategoryAsync(categorydto);
+        //    if (result.IsSuccess)
+        //    {
+        //        return Ok(true); 
+        //    }
+
+        //    return BadRequest(result.ErrorMessage);
+        //}
+
+
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateCategoryDto categorydto)
+        public async Task<IActionResult> Post([FromBody] CreateCategoryDto dto)
         {
-            if (categorydto == null)
-            {
-                return BadRequest("Category data is required.");
-            }
-
-            var result = await _services.CreateCategoryAsync(categorydto);
-            if (result.IsSuccess)
-            {
-                return Ok(true); 
-            }
-
-            return BadRequest(result.ErrorMessage);
-        }
-        
-
-        // PUT api/<CategoriesController>/5
-        [HttpPut("{id}")]
-         public void Put(int id, [FromBody] string value)
-        {
-
+            var result = await _services.CreateCategoryAsync(dto);
+            return result.IsSuccess ? Ok(true) : BadRequest(result.ErrorMessage);
         }
 
-        // DELETE api/<CategoriesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost("assign")]
+        public async Task<IActionResult> Assign([FromBody] AssignCategoryDto dto)
         {
+            var result = await _services.AssignCategoryToZoneAsync(dto);
+            return result.IsSuccess ? Ok(true) : BadRequest(result.ErrorMessage);
         }
+
+
+
     }
 }

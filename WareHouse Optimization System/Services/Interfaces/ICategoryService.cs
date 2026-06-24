@@ -8,5 +8,7 @@ namespace WareHouse_Optimization_System.Services.Interfaces
         Task<ServiceResult<CategoryResponseDto>> GetZoneForCategoryAsync(string categoryName);
         Task<ServiceResult<Category>> CreateCategoryAsync(CreateCategoryDto request);
         Task<ServiceResult<List<string>>> GetAllCategoriesAsync();
+
+        Task<ServiceResult<Category>> AssignCategoryToZoneAsync(AssignCategoryDto request);
     }
 }
