@@ -19,7 +19,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
             try
             {
                 var totalZones = await _context.Zones.CountAsync();
-                var totalVendors = await _context.Vendors.CountAsync();
+                var totalVendors = await _context.Vendors.CountAsync(c=>c.IsActive);
                 var totalStockItems = await _context.StockItems.CountAsync();
 
                 var totalLowStockAlerts = await _context.StockItems

@@ -22,7 +22,7 @@ namespace WareHouse_Optimization_System.Services.Implementations
         public async Task<ServiceResult<List<string>>> GetVendorsByCategory(string categoryName)
         {
             var VendorName = await _context.Vendors
-                                    .Where(v => v.GoodsSupplied.Contains(categoryName)) 
+                                    .Where(v => v.GoodsSupplied.Contains(categoryName) && v.IsActive ) 
                                     .Select(v => v.Name)
                                     .ToListAsync();
 

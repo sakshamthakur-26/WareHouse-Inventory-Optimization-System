@@ -10,7 +10,7 @@ namespace WareHouse_Optimization_System.DTOs.Zone
         [Range(1, int.MaxValue)]
         public int MaxCapacity { get; set;}
 
-        //public int CurrentUsage { get; set; }
+        public int CurrentUsage { get; set; }
 
     }
 }
